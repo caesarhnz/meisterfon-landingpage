@@ -2482,13 +2482,51 @@
       }
 
       .security-card-visual {
-        height: 200px;
+        margin: 0 -20px;
+        height: 220px;
+      }
+
+      .security-card h3 {
+        font-size: 1.05rem;
+      }
+
+      .security-card p {
+        font-size: 0.85rem;
+      }
+
+      /* Trust icons responsive */
+      .trust-icons-row {
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .trust-icon-text {
+        font-size: 0.6rem;
       }
 
       /* Slider compare on mobile */
       .slider-compare .slider-handle {
-        width: 26px;
-        height: 26px;
+        width: 28px;
+        height: 28px;
+      }
+
+      .slider-overlay {
+        max-width: 140px;
+        padding: 8px 10px;
+      }
+
+      .slider-overlay-title {
+        font-size: 0.58rem;
+      }
+
+      .slider-overlay-body {
+        font-size: 0.52rem;
+      }
+
+      /* Security card circle smaller on mobile */
+      .security-card-circle {
+        width: 80px !important;
+        height: 80px !important;
       }
 
       /* ── TESTIMONIAL ── */
@@ -2508,14 +2546,45 @@
       .testimonial-image {
         width: 100%;
         aspect-ratio: 16 / 10;
+        border-radius: 12px;
       }
 
       .testimonial-right {
-        gap: 20px;
+        gap: 16px;
       }
 
       .testimonial-identity {
-        gap: 16px;
+        gap: 12px;
+        padding-bottom: 16px;
+      }
+
+      .testimonial-name {
+        font-size: 1.4rem;
+      }
+
+      .testimonial-role {
+        font-size: 0.88rem;
+      }
+
+      .testimonial-logo {
+        width: 48px;
+        height: 48px;
+      }
+
+      .testimonial-quote-mark {
+        font-size: 3.5rem;
+        margin-bottom: 12px;
+      }
+
+      .testimonial-quote-text {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+      }
+
+      .testimonial-quote-meta {
+        font-size: 0.82rem;
+        gap: 10px;
+        padding-top: 16px;
       }
 
       .key-number-num {
@@ -2529,10 +2598,27 @@
 
       .pricing-plans {
         grid-template-columns: 1fr !important;
+        gap: 28px;
       }
 
       .pricing-new-card {
         padding: 20px 18px;
+        overflow: visible;
+      }
+
+      .pricing-new-card.featured {
+        margin-top: 8px;
+      }
+
+      .pricing-badge {
+        top: -12px;
+        font-size: 0.62rem;
+        padding: 5px 14px;
+        z-index: 1;
+      }
+
+      .pricing-new-amount {
+        font-size: 2rem;
       }
 
       .pricing-addon {
@@ -2544,6 +2630,17 @@
 
       .pricing-addon-icon {
         margin: 0 auto;
+      }
+
+      .pricing-addon-price {
+        font-size: 1.4rem;
+      }
+
+      .pricing-addon-cta {
+        width: 100%;
+        text-align: center;
+        display: block;
+        box-sizing: border-box;
       }
 
       .pricing-card {
@@ -2650,35 +2747,55 @@
 
       /* ── FOOTER ── */
       .footer-new {
-        padding: 80px 20px 32px;
+        padding: 60px 20px 32px;
         min-height: auto;
       }
 
       .footer-top-row {
         flex-direction: column;
         align-items: flex-start;
-        gap: 20px;
+        gap: 16px;
+      }
+
+      .footer-logo-img {
+        height: auto !important;
+        max-width: 100% !important;
+        width: 180px !important;
       }
 
       .footer-new-brand-text {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
       }
 
       .footer-new-middle {
         grid-template-columns: 1fr 1fr !important;
-        gap: 24px;
-        padding: 0 0 40px;
+        gap: 20px 24px;
+        padding: 0 0 32px;
       }
 
       .footer-new-brand {
         grid-column: 1 / -1;
       }
 
+      .footer-new-col h4 {
+        font-size: 0.65rem;
+        margin-bottom: 10px;
+      }
+
+      .footer-new-col a {
+        font-size: 0.85rem;
+      }
+
+      .footer-new-col ul {
+        gap: 7px;
+      }
+
       .footer-new-bottom {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 12px;
+        gap: 8px;
+        font-size: 0.75rem;
       }
 
       .footer-bottom {
@@ -2688,7 +2805,8 @@
       }
 
       .footer-watermark img {
-        width: 200%;
+        width: 160%;
+        opacity: 0.15;
       }
 
       /* ── COMPARISON ── */
@@ -2713,6 +2831,88 @@
 
       .step {
         padding: 0;
+      }
+    }
+
+    /* ── SMALL MOBILE (≤480px) ── */
+    @media (max-width: 480px) {
+      /* ── HERO ── */
+      .hero h1,
+      .hero-left h1 {
+        font-size: 2.2rem !important;
+        line-height: 1.08 !important;
+      }
+
+      .hero-left p {
+        font-size: 0.9rem;
+      }
+
+      .hero-cta-row {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+      }
+
+      .hero-cta-row .hero-cta {
+        text-align: center;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .hero-live-test {
+        padding: 14px 16px;
+        gap: 8px;
+      }
+
+      .hero-live-number {
+        font-size: 1rem;
+      }
+
+      .hero-live-text {
+        font-size: 0.75rem;
+      }
+
+      .trust-badges {
+        gap: 6px;
+      }
+
+      .trust-badge {
+        font-size: 0.68rem !important;
+        padding: 5px 10px !important;
+      }
+
+      /* ── HOW IT WORKS ── */
+      .how-new-header h2 {
+        font-size: 1.8rem !important;
+        line-height: 1.1 !important;
+      }
+
+      .how-new-header p {
+        font-size: 0.9rem !important;
+      }
+
+      .how-visual {
+        height: 220px;
+      }
+
+      .how-feature h3 {
+        font-size: 0.85rem;
+      }
+
+      .how-feature p {
+        font-size: 0.78rem;
+      }
+
+      .how-card {
+        padding: 16px 12px;
+      }
+
+      .how-trust {
+        gap: 8px;
+      }
+
+      .how-trust-item {
+        font-size: 0.72rem;
       }
     }
 
@@ -3792,6 +3992,11 @@
       gap: 12px;
     }
 
+    .footer-logo-img {
+      height: 80px;
+      width: auto;
+    }
+
     .footer-new-brand-icon {
       width: 44px;
       height: 44px;
@@ -3897,7 +4102,7 @@
     }
 
     @media (max-width: 600px) {
-      .footer-new-middle { grid-template-columns: 1fr; }
+      .footer-new-middle { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -3982,7 +4187,7 @@
           </div>
           <h1>Kein Gespr&auml;ch mehr vergessen.</h1>
           <p>Meisterfon ist die Gesch&auml;ftstelefonie f&uuml;r Handwerker, die lieber Auftr&auml;ge erledigen als Notizen schreiben.</p>
-          <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+          <div class="hero-cta-row" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
             <a href="#preise" class="hero-cta">Jetzt loslegen</a>
             <a href="tel:+498941432183" class="hero-cta hero-cta-phone">&#9742; Jetzt anrufen</a>
           </div>
@@ -4555,7 +4760,7 @@
       <div class="footer-top-row">
         <div class="footer-brand-block">
           <div class="footer-new-brand">
-            <img src="images/meisterfon-logo-white.svg" alt="Meisterfon" style="height: 80px; width: auto;">
+            <img src="images/meisterfon-logo-white.svg" alt="Meisterfon" class="footer-logo-img">
           </div>
         </div>
       </div>
@@ -4584,7 +4789,7 @@
         <div class="footer-new-col">
           <h4>Unternehmen</h4>
           <ul>
-            <li><a href="#" onclick="openAboutModal(); return false;">&Uuml;ber uns</a></li>
+            <li><a href="#" id="aboutLink">&Uuml;ber uns</a></li>
             <li><a href="#">Karriere</a></li>
             <li><a href="#">Kontakt</a></li>
           </ul>
@@ -5499,7 +5704,7 @@
   <!-- ── ABOUT MODAL ── -->
   <div class="modal-overlay" id="aboutModal">
     <div class="about-modal-container">
-      <button class="modal-close" onclick="closeAboutModal()">&times;</button>
+      <button class="modal-close" id="aboutModalClose">&times;</button>
 
       <div class="about-modal-header">
         <span class="section-eyebrow" style="margin-bottom:12px;">Das Team</span>
@@ -5724,16 +5929,25 @@
 
   <script>
     /* ── About Modal ── */
-    function openAboutModal() {
-      document.getElementById('aboutModal').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeAboutModal() {
-      document.getElementById('aboutModal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
     (function() {
       var modal = document.getElementById('aboutModal');
+      var closeBtn = document.getElementById('aboutModalClose');
+      var openLink = document.getElementById('aboutLink');
+
+      function openAboutModal(e) {
+        if (e) e.preventDefault();
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeAboutModal() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      if (openLink) openLink.addEventListener('click', openAboutModal);
+      if (closeBtn) closeBtn.addEventListener('click', closeAboutModal);
+
       modal.addEventListener('click', function(e) {
         if (e.target === modal) closeAboutModal();
       });

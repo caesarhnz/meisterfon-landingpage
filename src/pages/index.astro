@@ -1,0 +1,5746 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meisterfon — Kein Gespräch mehr vergessen.</title>
+  <meta name="description" content="Meisterfon ist die Geschäftstelefonie für Handwerker. KI-Zusammenfassung nach jedem Gespräch, SMS an Kunden, Büro in Echtzeit informiert.">
+  <meta property="og:title" content="Meisterfon — Kein Gespräch mehr vergessen.">
+  <meta property="og:description" content="Meisterfon ist die Geschäftstelefonie für Handwerker. Eine eigene Geschäftsnummer, echte Gespräche — und danach weiß jeder, was besprochen wurde.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="Meisterfon">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,900;1,500&family=Boldonse&family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* thebau.ventures palette */
+      --bg: #ffffff;
+      --bg-soft: #fafafa;
+      --white: #ffffff;
+      --text: #282524;
+      --text-deep: #0a0a0a;
+      --text-secondary: #6a6663;
+      --accent: #E8A000;
+      --accent-hover: #d49200;
+      --border: rgba(40, 37, 36, 0.08);
+      --border-strong: #282524;
+      --dark: #282524;
+      --warm-overlay: rgba(186, 147, 108, 0.18);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Archivo', 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: 0;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Archivo', 'Inter', system-ui, sans-serif;
+      font-weight: 500;
+      text-transform: none;
+    }
+
+    h1 {
+      font-size: 5rem;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      font-weight: 500;
+    }
+
+    h2 {
+      font-size: 3rem;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      font-weight: 500;
+    }
+
+    h3 {
+      font-size: 1.35rem;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+
+    /* Hero keeps its DM Serif signature */
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      text-transform: none;
+      line-height: 1.05;
+      font-size: 4.2rem;
+    }
+
+    /* Meisterfon brand wordmark — Boldonse font, scaled to match Archivo visually */
+    .brand-meisterfon {
+      font-family: 'Boldonse', cursive;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 0.66em;
+      line-height: inherit;
+      letter-spacing: -0.01em;
+      vertical-align: baseline;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .section-padding {
+      padding: 64px 0;
+    }
+
+    /* ── GLOBAL Button Overrides (thebau.ventures style) ── */
+    /* Pill-shaped, simple color hover, no growing */
+    .navbar-cta,
+    .hero-cta,
+    .pricing-new-cta,
+    .pricing-addon-cta,
+    .cta-section-btn,
+    .cta-btn-primary,
+    .cta-btn-secondary,
+    .contact-band-btn,
+    .footer-new-cta {
+      font-family: 'Inter', sans-serif !important;
+      border-radius: 9999px !important;
+      font-size: 0.85rem !important;
+      letter-spacing: -0.01em !important;
+      font-weight: 600 !important;
+      padding: 14px 26px !important;
+      text-transform: none !important;
+      transition: background 0.2s ease, color 0.2s ease !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+    }
+
+    /* Primary buttons — dark warm BG, light text */
+    .pricing-new-cta,
+    .cta-btn-primary,
+    .contact-band-btn,
+    .pricing-addon-cta,
+    .footer-new-cta {
+      background: var(--text) !important;
+      color: var(--white) !important;
+      border: 1px solid var(--text) !important;
+    }
+
+    .pricing-new-cta:hover,
+    .pricing-addon-cta:hover,
+    .cta-btn-primary:hover,
+    .contact-band-btn:hover,
+    .footer-new-cta:hover {
+      background: var(--text-deep) !important;
+    }
+
+    /* Secondary buttons — light BG, dark text */
+    .pricing-new-cta.outlined,
+    .cta-btn-secondary {
+      background: transparent !important;
+      color: var(--text) !important;
+      border: 1px solid var(--text) !important;
+    }
+
+    .pricing-new-cta.outlined:hover,
+    .cta-btn-secondary:hover {
+      background: var(--text) !important;
+      color: var(--white) !important;
+    }
+
+    /* Accent buttons (hero + navbar CTA) — amber */
+    .navbar-cta,
+    .hero-cta,
+    .cta-section-btn {
+      background: var(--accent) !important;
+      color: var(--text) !important;
+      border: 1px solid var(--accent) !important;
+    }
+
+    .navbar-cta:hover,
+    .hero-cta:hover,
+    .cta-section-btn:hover {
+      background: var(--accent-hover) !important;
+    }
+
+    /* ── GLOBAL Card overrides — subtle border on white BG ── */
+    .security-card,
+    .pricing-new-card,
+    .pricing-addon,
+    .cta-card,
+    .feature-card {
+      border-radius: 16px !important;
+      box-shadow: none !important;
+      border: 1px solid rgba(40, 37, 36, 0.08) !important;
+      background: var(--white) !important;
+    }
+
+    .pricing-new-card.featured {
+      border: 1px solid var(--text) !important;
+    }
+
+    /* Section eyebrow / pre-headline — uppercase Archivo label */
+    .cta-pre-headline,
+    .testimonial-name-label,
+    .pricing-tier-label,
+    .footer-new-col h4 {
+      font-family: 'Archivo', sans-serif !important;
+      font-weight: 600 !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.06em !important;
+      text-transform: uppercase !important;
+    }
+
+    /* ── BIG SECTION HEADERS (eyebrow row + huge headline) ── */
+    .how-new-header,
+    .security-header,
+    .testimonial-header,
+    .pricing-new-header,
+    .faq-new-header {
+      padding-top: 32px !important;
+      border-top: 1px solid rgba(40, 37, 36, 0.12);
+      margin-bottom: 32px !important;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Eyebrow row: section number + label in grey */
+    .section-eyebrow-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(40, 37, 36, 0.5);
+    }
+
+    .section-eyebrow {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(40, 37, 36, 0.5);
+    }
+
+    .section-number {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: rgba(40, 37, 36, 0.4);
+    }
+
+    .how-new-header h2,
+    .security-header h2,
+    .testimonial-header h2,
+    .pricing-new-header h2,
+    .faq-new-header h2 {
+      font-family: 'Archivo', sans-serif !important;
+      font-weight: 700 !important;
+      font-size: 4.5rem !important;
+      line-height: 0.92 !important;
+      letter-spacing: -0.045em !important;
+      color: var(--text) !important;
+      max-width: 900px;
+      margin-bottom: 20px !important;
+    }
+
+    .how-new-header p,
+    .security-header p,
+    .testimonial-header p,
+    .pricing-new-header p,
+    .faq-new-header p {
+      font-family: 'Archivo', sans-serif !important;
+      font-weight: 500 !important;
+      font-size: 1.15rem !important;
+      color: var(--text-secondary) !important;
+      max-width: 720px;
+      line-height: 1.4 !important;
+    }
+
+    @media (max-width: 900px) {
+      .how-new-header h2,
+      .security-header h2,
+      .testimonial-header h2,
+      .pricing-new-header h2,
+      .faq-new-header h2 {
+        font-size: 3rem !important;
+      }
+    }
+
+    /* Body paragraphs in sections */
+    .security-header p,
+    .testimonial-header p,
+    .pricing-new-header p,
+    .faq-new-header p,
+    .cta-section-subtitle,
+    .security-card p,
+    .pricing-tier-tagline {
+      font-family: 'Archivo', sans-serif !important;
+      font-weight: 500 !important;
+      letter-spacing: 0 !important;
+      color: var(--text-secondary) !important;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease;
+      border-bottom: 0.5px solid rgba(255,255,255,0.2);
+    }
+
+    .navbar.scrolled {
+      background: rgba(244, 243, 236, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom-color: rgba(196, 196, 169, 0.5);
+    }
+
+    .navbar-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Left group: Logo + Separator + Links */
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .navbar-logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-logo-img {
+      height: 22px;
+      width: auto;
+      transition: filter 0.3s ease;
+    }
+
+    .navbar.scrolled .navbar-logo-img {
+      filter: brightness(0) saturate(100%);
+    }
+
+    .navbar-separator {
+      width: 1px;
+      height: 24px;
+      background: rgba(255,255,255,0.3);
+      margin: 0 24px;
+      flex-shrink: 0;
+      transition: background 0.3s ease;
+    }
+
+    .navbar.scrolled .navbar-separator {
+      background: var(--border);
+    }
+
+    .navbar-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .navbar-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      transition: color 0.3s ease;
+    }
+
+    .navbar.scrolled .navbar-links a {
+      color: var(--text);
+    }
+
+    .navbar-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Right group: Login + CTA — pushed to right */
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-left: auto;
+    }
+
+    .navbar-login {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .navbar.scrolled .navbar-login {
+      color: var(--text);
+    }
+
+    .navbar-login:hover {
+      color: var(--accent);
+    }
+
+    .navbar-cta {
+      background: var(--accent);
+      color: var(--text);
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .navbar-cta::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text);
+    }
+
+    .navbar-cta:hover {
+      background: var(--accent-hover);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      margin-left: auto;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled .hamburger span {
+      background: var(--text);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      background-image: url('/images/hero-handwerker.webp');
+      background-size: cover;
+      background-position: center top;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%);
+      z-index: 1;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding-bottom: 8%;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-left {
+      max-width: 580px;
+    }
+
+    .hero-left h1 {
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .hero-left p {
+      color: var(--white);
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 1.05rem;
+      max-width: 520px;
+      opacity: 0.92;
+      margin-bottom: 32px;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    /* Hero: "Jetzt anrufen" button variant */
+    .hero-cta-phone {
+      background: transparent !important;
+      border: 1px solid rgba(255,255,255,0.4) !important;
+      color: var(--white) !important;
+    }
+
+    .hero-cta-phone:hover {
+      background: rgba(255,255,255,0.15) !important;
+      border-color: rgba(255,255,255,0.7) !important;
+    }
+
+    /* Hero: live test block */
+    .hero-live-test {
+      margin-top: 24px;
+      padding: 18px 22px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 480px;
+    }
+
+    .hero-live-badge {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      background: rgba(232,160,0,0.2);
+      padding: 5px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      animation: badge-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes badge-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .hero-live-content {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .hero-live-number {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: color 0.2s ease;
+    }
+
+    .hero-live-number:hover { color: var(--accent); }
+
+    .hero-live-text {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.4;
+    }
+
+    /* CTA Section: live test card */
+    .cta-live-card {
+      margin-top: 28px;
+      padding: 24px 28px;
+      background: var(--white);
+      border: 1px solid rgba(40,37,36,0.1);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .cta-live-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cta-live-badge {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .cta-live-number {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .cta-live-text {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      max-width: 380px;
+    }
+
+    .cta-live-btn {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 14px 28px;
+      border-radius: 9999px;
+      background: var(--text);
+      color: var(--white);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .cta-live-btn:hover { background: #0a0a0a; }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--text);
+      text-decoration: none;
+      padding: 14px 32px;
+      font-weight: 600;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: background 0.2s ease;
+    }
+
+    .hero-cta:hover {
+      background: var(--accent-hover);
+    }
+
+    .hero-right {
+      position: absolute;
+      right: 48px;
+      top: 28%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      z-index: 3;
+    }
+
+    .notification-stack {
+      position: relative;
+      width: 340px;
+      height: 110px;
+    }
+
+    .notification-stack .sms-card,
+    .notification-stack .email-card {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 340px;
+      transition: all 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    /* Front card (newest, on top) */
+    .notification-stack .sms-card.visible,
+    .notification-stack .email-card.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      z-index: 3;
+    }
+
+    /* One behind — peeking out below, slightly smaller */
+    .notification-stack .sms-card.visible.stacked-1,
+    .notification-stack .email-card.visible.stacked-1 {
+      transform: translateY(10px) scale(0.96);
+      opacity: 0.55;
+      filter: brightness(0.9);
+      z-index: 2;
+    }
+
+    /* Two behind — further below, even smaller */
+    .notification-stack .sms-card.visible.stacked-2,
+    .notification-stack .email-card.visible.stacked-2 {
+      transform: translateY(18px) scale(0.92);
+      opacity: 0.35;
+      filter: brightness(0.8);
+      z-index: 1;
+    }
+
+    /* ── ROTATING CIRCLE ── */
+    .rotating-circle {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      z-index: 2;
+      pointer-events: none;
+      /* Position set by JS to track phone in background image */
+    }
+
+    .rotating-circle img {
+      width: 100%;
+      height: 100%;
+      animation: rotate 20s linear infinite;
+      /* transparent PNG, no blend needed */
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── TRUST BADGES ── */
+    .trust-badges {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .trust-badge {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      white-space: nowrap;
+    }
+
+    /* ── TRANSCRIPT CARD ── */
+    .transcript-card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      max-width: 340px;
+      width: 340px;
+      border: 1px solid rgba(255,255,255,0.2);
+      overflow: hidden;
+    }
+
+    .transcript-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e53e3e;
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .transcript-header span:last-child {
+      margin-left: auto;
+      opacity: 0.5;
+      font-size: 0.75rem;
+    }
+
+    .transcript-body {
+      padding: 12px;
+      min-height: 160px;
+      max-height: 220px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .chat-bubble {
+      max-width: 85%;
+      padding: 8px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      position: relative;
+      animation: bubble-in 0.3s ease;
+    }
+
+    @keyframes bubble-in {
+      from { opacity: 0; transform: scale(0.95) translateY(5px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .chat-bubble.kunde {
+      background: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.95);
+      align-self: flex-start;
+      border-bottom-left-radius: 3px;
+    }
+
+    .chat-bubble.handwerker {
+      background: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.95);
+      align-self: flex-end;
+      border-bottom-right-radius: 3px;
+    }
+
+    .chat-bubble .bubble-sender {
+      font-size: 0.65rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+      opacity: 0.6;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .cursor-blink {
+      display: inline;
+      animation: blink 0.7s step-end infinite;
+      color: rgba(255,255,255,0.7);
+      font-weight: 300;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* ── SMS CARD ── */
+    .sms-card {
+      background: rgba(232, 160, 0, 0.15);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(232, 160, 0, 0.3);
+      border-radius: 12px;
+      padding: 14px 16px;
+      max-width: 340px;
+      width: 340px;
+      color: rgba(255,255,255,0.95);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease;
+    }
+
+    .sms-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sms-card-title {
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+      color: var(--accent);
+    }
+
+    .sms-card-body {
+      font-size: 0.75rem;
+      line-height: 1.45;
+      margin-bottom: 6px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .sms-card-footer {
+      font-size: 0.65rem;
+      opacity: 0.5;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .email-card {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .email-card .sms-card-title {
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* ── PAIN QUOTES ── */
+    .pain-quotes {
+      padding: 64px 0;
+      background: var(--bg);
+    }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .pain-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 32px;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .pain-card .quote-mark {
+      font-family: 'DM Serif Display', serif;
+      font-size: 4rem;
+      color: var(--accent);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: -10px;
+    }
+
+    .pain-card blockquote {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .pain-card cite {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-style: normal;
+      display: block;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-it-works {
+      background: var(--white);
+    }
+
+    .how-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .how-header h2 {
+      margin-bottom: 12px;
+    }
+
+    .how-header p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      gap: 0;
+      align-items: start;
+    }
+
+    .step-divider {
+      width: 1px;
+      background: var(--border);
+      height: 100%;
+      min-height: 180px;
+      align-self: stretch;
+    }
+
+    .step {
+      padding: 0 40px;
+    }
+
+    .step-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 4rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .step h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .step p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    /* ── HOW IT WORKS (auto-progress carousel, bordered card) ── */
+    .how-new {
+      background: var(--white);
+      padding: 64px 32px;
+    }
+
+    .how-new-header {
+      max-width: 1200px;
+      margin: 0 auto 48px;
+    }
+
+    .how-new-header h2 {
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .how-new-header p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+    }
+
+    .how-card {
+      max-width: 1200px;
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      background: var(--white);
+      position: relative;
+      min-height: 640px;
+    }
+
+    .how-trust {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 0 24px;
+    }
+
+    .how-trust-item {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .how-trust-divider {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+      position: relative;
+    }
+
+    /* LEFT column: visual (image + iphone bottom-cropped) */
+    .how-visual {
+      position: relative;
+      height: 580px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #e5dfd3;
+    }
+
+    .how-visual-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* iPhone bottom-cropped — sits lower so bottom edge is cut off */
+    .how-iphone-stage {
+      position: absolute;
+      right: 40px;
+      top: 60px;
+      bottom: -80px;
+      width: 280px;
+      z-index: 3;
+    }
+
+    .how-iphone-stage .how-visual-iphone {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      filter: drop-shadow(0 24px 60px rgba(0,0,0,0.35));
+    }
+
+    .how-iphone-stage .how-visual-iphone.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Action scene — glassmorphism, positioned next to the phone */
+    .how-action-stage {
+      position: absolute;
+      right: 340px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 250px;
+      height: 440px;
+      max-height: 440px;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .how-action-scene {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: translateX(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .how-action-scene.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scene-card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+      color: rgba(255,255,255,0.95);
+    }
+
+    .scene-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      margin-bottom: 8px;
+    }
+
+    .scene-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .scene-dot.green { background: #10b981; }
+    .scene-dot.red { background: #ef4444; animation: pulse-dot 1.5s ease-in-out infinite; }
+    .scene-dot.amber { background: var(--accent); }
+    .scene-dot.blue { background: #3b82f6; }
+
+    .scene-body {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.95);
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .scene-meta {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.65);
+      margin-top: 4px;
+    }
+
+    /* Scene 1: setup checklist */
+    .scene-check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.92);
+      padding: 3px 0;
+      opacity: 0;
+    }
+
+    .how-action-scene.active .scene-check {
+      animation: check-in 0.4s ease forwards;
+    }
+
+    .how-action-scene.active .scene-check:nth-of-type(1) { animation-delay: 0.2s; }
+    .how-action-scene.active .scene-check:nth-of-type(2) { animation-delay: 0.6s; }
+    .how-action-scene.active .scene-check:nth-of-type(3) { animation-delay: 1.0s; }
+    .how-action-scene.active .scene-check:nth-of-type(4) { animation-delay: 1.4s; }
+
+    @keyframes check-in {
+      from { opacity: 0; transform: translateX(-6px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .scene-check-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    /* Scene 2: incoming call */
+    .scene-caller {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .scene-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #E8A000, #d49200);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .scene-avatar::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border: 2px solid rgba(16, 185, 129, 0.5);
+      border-radius: 50%;
+      animation: ring-pulse 1.5s ease-out infinite;
+    }
+
+    @keyframes ring-pulse {
+      0% { transform: scale(0.85); opacity: 1; }
+      100% { transform: scale(1.25); opacity: 0; }
+    }
+
+    .scene-caller-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      line-height: 1.2;
+    }
+
+    .scene-caller-num {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.65);
+      margin-top: 2px;
+    }
+
+    /* Scene 3: live bubbles */
+    .scene-bubble {
+      padding: 9px 12px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      line-height: 1.4;
+      max-width: 85%;
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    .how-action-scene.active .scene-bubble {
+      animation: bubble-in 0.35s ease forwards;
+    }
+
+    .how-action-scene.active .scene-bubble:nth-of-type(1) { animation-delay: 0.3s; }
+    .how-action-scene.active .scene-bubble:nth-of-type(2) { animation-delay: 1.4s; }
+    .how-action-scene.active .scene-bubble:nth-of-type(3) { animation-delay: 2.6s; }
+
+    .scene-bubble.kunde {
+      background: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.95);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .scene-bubble.handwerker {
+      background: rgba(232, 160, 0, 0.85);
+      color: var(--text);
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+
+    .scene-bubble-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      opacity: 0.55;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
+    }
+
+    /* Scene 4: notification stack */
+    .scene-notif {
+      opacity: 0;
+      transform: translateY(8px) scale(0.97);
+      transition: all 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .how-action-scene.active .scene-notif {
+      animation: notif-enter 0.5s ease forwards;
+    }
+
+    .how-action-scene.active .scene-notif:nth-of-type(1) { animation-delay: 0.3s; }
+    .how-action-scene.active .scene-notif:nth-of-type(2) { animation-delay: 1.4s; }
+    .how-action-scene.active .scene-notif:nth-of-type(3) { animation-delay: 2.5s; }
+
+    @keyframes notif-enter {
+      from { opacity: 0; transform: translateY(10px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* RIGHT column: feature list */
+    .how-features {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 20px 12px;
+      justify-content: center;
+    }
+
+    .how-feature {
+      display: flex;
+      gap: 14px;
+      padding: 16px 4px;
+      cursor: pointer;
+      position: relative;
+      opacity: 0.5;
+      transition: opacity 0.4s ease;
+    }
+
+    .how-feature.active {
+      opacity: 1;
+    }
+
+    .how-feature-icon {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      margin-top: 2px;
+    }
+
+    .how-feature-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .how-feature-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .how-feature h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .how-feature p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Progress bar — only visible on active */
+    .how-feature-progress {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(51, 45, 45, 0.08);
+      border-radius: 1px;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .how-feature.active .how-feature-progress {
+      opacity: 1;
+    }
+
+    .how-feature-progress-bar {
+      width: 0%;
+      height: 100%;
+      background: var(--text);
+      border-radius: 1px;
+    }
+
+    .how-feature.active .how-feature-progress-bar {
+      animation: progress-fill 10s linear forwards;
+    }
+
+    @keyframes progress-fill {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+    @media (max-width: 1100px) {
+      .how-action-stage { display: none; }
+      .how-iphone-stage { right: -80px; width: 200px; height: 420px; }
+      .how-features { padding-left: 80px; }
+    }
+
+    @media (max-width: 900px) {
+      .how-card { padding: 32px 24px; }
+      .how-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .how-visual { aspect-ratio: 1.2/1; }
+      .how-iphone-stage {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin: -80px auto 0;
+        width: 180px;
+        height: 380px;
+      }
+      .how-features { padding-left: 0; }
+    }
+
+    /* ── SECURITY (3-Card layout, reiner-style) ── */
+    .security {
+      background: var(--bg);
+      padding: 64px 32px;
+    }
+
+    .security-header {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+    }
+
+    .security-header h2 {
+      color: var(--text);
+      margin-bottom: 10px;
+      max-width: 900px;
+    }
+
+    .security-header p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 900px;
+    }
+
+    .security-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .security-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+      overflow: hidden;
+    }
+
+    .security-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+
+    .security-card h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .security-card p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin: 0;
+      flex: 1;
+    }
+
+    .security-card-link {
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid transparent;
+      width: fit-content;
+      transition: border-color 0.2s ease;
+    }
+
+    .security-card-link:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    .security-card-link::after {
+      content: '→';
+      color: var(--accent);
+    }
+
+    .security-card-visual {
+      margin: 0 -28px;
+      height: 240px;
+      overflow: hidden;
+      position: relative;
+      background: #e5dfd3;
+    }
+
+    .security-card-visual img.security-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* White fade from top — blends image into card */
+    .security-card-visual::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(to bottom, var(--white) 0%, rgba(255,255,255,0.8) 25%, rgba(255,255,255,0.4) 55%, rgba(255,255,255,0) 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* ── Image comparison slider (45° angled) ── */
+    .slider-compare {
+      position: relative;
+      cursor: ew-resize;
+      overflow: hidden;
+    }
+
+    .slider-img-left,
+    .slider-img-right {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slider-img-left-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      clip-path: polygon(0 0, var(--sl-top) 0, var(--sl-bot) 100%, 0 100%);
+      overflow: hidden;
+    }
+
+    .slider-img-left-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scaleX(-1);
+    }
+
+    .slider-img-right {
+      z-index: 0;
+    }
+
+    /* White edge line — clip-path strip using same CSS vars, guaranteed on the edge */
+    .slider-edge {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: rgba(255,255,255,0.9);
+      clip-path: polygon(
+        calc(var(--sl-top) - 1.5px) 0,
+        calc(var(--sl-top) + 1.5px) 0,
+        calc(var(--sl-bot) + 1.5px) 100%,
+        calc(var(--sl-bot) - 1.5px) 100%
+      );
+      pointer-events: none;
+    }
+
+    .slider-handle {
+      position: absolute;
+      z-index: 4;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+      transform: translate(-50%, -50%);
+      cursor: ew-resize;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.55rem;
+      color: rgba(40,37,36,0.45);
+      letter-spacing: 2px;
+      line-height: 1;
+      padding-top: 1px;
+    }
+
+    /* Trust icons row in security card */
+    .trust-icons-row {
+      display: flex;
+      gap: 18px;
+      margin-top: auto;
+      padding-top: 12px;
+    }
+
+    .trust-icon-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .trust-icon-flag {
+      width: 24px;
+      height: 18px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 2px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .trust-icon-flag span {
+      flex: 1;
+    }
+
+    .trust-icon-text {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      line-height: 1.25;
+      color: var(--text);
+    }
+
+    .trust-icon-text strong {
+      font-weight: 700;
+    }
+
+    /* Slider overlays — bottom corners, gradual fade with slider */
+    .slider-overlay {
+      position: absolute;
+      z-index: 5;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 10px 12px;
+      pointer-events: none;
+      opacity: 0;
+      max-width: 165px;
+    }
+
+    .slider-overlay-left {
+      bottom: 12px;
+      left: 12px;
+    }
+
+    .slider-overlay-right {
+      bottom: 12px;
+      right: 12px;
+    }
+
+    .slider-overlay-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .slider-overlay-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .slider-overlay-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      line-height: 1;
+    }
+
+    .slider-overlay-body {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.35;
+    }
+
+    .slider-overlay-line {
+      display: block;
+      opacity: 0;
+      transform: translateY(3px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .slider-overlay-line.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slider-check {
+      display: inline-block;
+      color: #10b981;
+      font-weight: 700;
+      font-size: 0.65rem;
+      animation: check-pop 0.4s ease forwards;
+    }
+
+    @keyframes check-pop {
+      0% { transform: scale(0); opacity: 0; }
+      60% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Rotating MEISTERFON circle around the head in the card image */
+    .security-card-circle {
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Tracking dot — remove after alignment */
+    .security-tracking-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: red;
+      border-radius: 50%;
+      z-index: 10;
+      pointer-events: none;
+      box-shadow: 0 0 0 2px rgba(255,0,0,0.3);
+    }
+
+    .security-card-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      animation: rotate 20s linear infinite;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25));
+    }
+
+    .security-card-visual-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #e5dfd3 0%, #c4c4a9 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(51, 45, 45, 0.3);
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .security-grid {
+        grid-template-columns: 1fr;
+      }
+      .security-card-visual {
+        height: 180px;
+      }
+    }
+
+    /* ── TESTIMONIAL / CASE STUDY (Bento Grid) ── */
+    .testimonial {
+      background: var(--white);
+      padding: 64px 32px;
+    }
+
+    .testimonial-header {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+    }
+
+    .testimonial-header h2 {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 3rem;
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+      color: var(--text);
+      margin-bottom: 14px;
+      max-width: 900px;
+    }
+
+    .testimonial-header p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 900px;
+    }
+
+    .testimonial-bento {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: auto;
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .testimonial-bento {
+        grid-template-columns: 1fr;
+      }
+      .testimonial-portrait-legacy {
+        margin: 0 auto;
+        width: 140px;
+        height: 170px;
+      }
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      background: var(--bg);
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 32px;
+      border-radius: 4px;
+    }
+
+    .feature-tag {
+      display: inline-block;
+      background: rgba(232,160,0,0.1);
+      color: var(--accent);
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .feature-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    /* ── COMPARISON ── */
+    .comparison {
+      background: var(--white);
+    }
+
+    .comparison-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .comparison-col {
+      border-radius: 4px;
+      padding: 36px;
+    }
+
+    .comparison-col.without {
+      background: #faf5f5;
+      border: 1px solid #e8d8d8;
+    }
+
+    .comparison-col.with {
+      background: #fdfaf2;
+      border: 2px solid var(--accent);
+    }
+
+    .comparison-col h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    .comparison-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .comparison-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .comparison-icon {
+      flex-shrink: 0;
+      font-size: 1rem;
+      margin-top: 1px;
+    }
+
+    .comparison-icon.red {
+      color: #c53030;
+    }
+
+    .comparison-icon.green {
+      color: #2f855a;
+    }
+
+    /* ── PRICING ── */
+    .pricing {
+      background: var(--bg);
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border: 2px solid var(--accent);
+      padding: 48px;
+      max-width: 480px;
+      margin: 0 auto;
+      border-radius: 4px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .pricing-amount {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      color: var(--text);
+      display: inline;
+    }
+
+    .pricing-period {
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .pricing-yearly {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-top: 8px;
+      margin-bottom: 28px;
+    }
+
+    .pricing-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 0 28px 0;
+    }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 32px;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .pricing-features li span {
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .pricing-cta {
+      display: block;
+      width: 100%;
+      background: var(--accent);
+      color: var(--text);
+      text-decoration: none;
+      text-align: center;
+      padding: 16px;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      margin-bottom: 14px;
+    }
+
+    .pricing-cta:hover {
+      background: var(--accent-hover);
+    }
+
+    .pricing-note {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* ── FAQ ── */
+    .faq {
+      background: var(--white);
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item summary {
+      padding: 20px 0;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text);
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+      margin-left: 16px;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item[open] summary::after {
+      content: '\00d7';
+    }
+
+    .faq-item .faq-answer {
+      padding: 0 0 20px 0;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+      margin-left: 0;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 80px 0 40px 0;
+    }
+
+    .footer-top {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .footer-top h2 {
+      color: var(--white);
+      font-size: 2rem;
+      margin-bottom: 24px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      color: var(--white);
+      opacity: 0.6;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: opacity 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    .footer-copy {
+      width: 100%;
+      text-align: center;
+      margin-top: 24px;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+
+    /* ── FADE UP ANIMATION ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE NAV ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: rgba(244, 243, 236, 0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 24px 32px;
+      z-index: 999;
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-right {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        align-items: flex-start;
+        margin-top: 24px;
+      }
+
+      .transcript-card, .sms-card, .notification-stack {
+        max-width: 300px;
+        width: 300px;
+      }
+
+      .rotating-circle {
+        display: none;
+      }
+
+      .pain-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .step-divider {
+        display: none;
+      }
+
+      .step {
+        padding: 0;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* ── GLOBAL TYPOGRAPHY ── */
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+
+      .section-padding {
+        padding: 48px 0;
+      }
+
+      /* ── SECTION HEADERS ── */
+      .how-new-header h2,
+      .security-header h2,
+      .testimonial-header h2,
+      .pricing-new-header h2,
+      .faq-new-header h2 {
+        font-size: 2.2rem !important;
+        line-height: 1.0 !important;
+      }
+
+      .how-new-header p,
+      .security-header p,
+      .testimonial-header p,
+      .pricing-new-header p,
+      .faq-new-header p {
+        font-size: 1rem !important;
+      }
+
+      .section-eyebrow-row {
+        margin-bottom: 20px;
+      }
+
+      /* ── NAVBAR ── */
+      .navbar-links,
+      .navbar-separator,
+      .navbar-right-desktop {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .navbar-inner {
+        padding: 0 20px;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 100svh;
+      }
+
+      .hero .container {
+        padding-bottom: 12%;
+      }
+
+      .hero h1,
+      .hero-left h1 {
+        font-size: 2.5rem !important;
+        line-height: 1.08 !important;
+      }
+
+      .hero-left {
+        max-width: 100%;
+      }
+
+      .hero-left p {
+        font-size: 0.95rem;
+      }
+
+      /* Hero right (transcript + sms cards) hidden on mobile */
+      .hero-right {
+        display: none;
+      }
+
+      /* Rotating circle hidden on mobile */
+      .rotating-circle {
+        display: none;
+      }
+
+      .transcript-card, .sms-card {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .trust-badges {
+        flex-wrap: wrap;
+      }
+
+      /* Hero live test card responsive */
+      .hero-live-test {
+        max-width: 100%;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hero-live-number {
+        font-size: 1.1rem;
+      }
+
+      /* Hero CTA buttons stack */
+      .hero-cta-row {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      /* ── PAIN QUOTES ── */
+      .pain-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* ── HOW IT WORKS (v2 card) ── */
+      .how-new {
+        padding: 48px 20px;
+      }
+
+      .how-card {
+        padding: 20px 16px;
+        min-height: auto;
+      }
+
+      .how-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px;
+      }
+
+      .how-visual {
+        height: 280px;
+        aspect-ratio: auto;
+      }
+
+      .how-iphone-stage {
+        display: none;
+      }
+
+      .how-action-stage {
+        display: none;
+      }
+
+      .how-features {
+        padding: 0 !important;
+      }
+
+      .how-feature h3 {
+        font-size: 0.9rem;
+      }
+
+      .how-feature p {
+        font-size: 0.82rem;
+      }
+
+      .how-trust {
+        gap: 12px;
+      }
+
+      .how-trust-item {
+        font-size: 0.78rem;
+      }
+
+      /* ── SECURITY CARDS ── */
+      .security {
+        padding: 48px 20px;
+      }
+
+      .security-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .security-card {
+        padding: 24px 20px 0;
+      }
+
+      .security-card-visual {
+        height: 200px;
+      }
+
+      /* Slider compare on mobile */
+      .slider-compare .slider-handle {
+        width: 26px;
+        height: 26px;
+      }
+
+      /* ── TESTIMONIAL ── */
+      .testimonial {
+        padding: 48px 20px;
+      }
+
+      .testimonial-bento {
+        grid-template-columns: 1fr !important;
+      }
+
+      .testimonial-bento-new {
+        grid-template-columns: 1fr !important;
+        gap: 24px;
+      }
+
+      .testimonial-image {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+      }
+
+      .testimonial-right {
+        gap: 20px;
+      }
+
+      .testimonial-identity {
+        gap: 16px;
+      }
+
+      .key-number-num {
+        font-size: 2rem !important;
+      }
+
+      /* ── PRICING ── */
+      .pricing-new {
+        padding: 48px 20px;
+      }
+
+      .pricing-plans {
+        grid-template-columns: 1fr !important;
+      }
+
+      .pricing-new-card {
+        padding: 20px 18px;
+      }
+
+      .pricing-addon {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+        gap: 16px;
+        padding: 24px 20px !important;
+      }
+
+      .pricing-addon-icon {
+        margin: 0 auto;
+      }
+
+      .pricing-card {
+        padding: 32px 24px;
+      }
+
+      /* ── FAQ ── */
+      .faq-new {
+        padding: 48px 20px;
+      }
+
+      .faq-new-item summary {
+        grid-template-columns: 1fr auto !important;
+        gap: 12px;
+        padding: 20px 0;
+      }
+
+      .faq-summary-eyebrow {
+        grid-row: 1;
+        grid-column: 1 / -1;
+        margin-bottom: -4px;
+        font-size: 0.68rem;
+      }
+
+      .faq-summary-title {
+        grid-column: 1;
+        font-size: 1.05rem !important;
+      }
+
+      .faq-new-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 0.95rem;
+      }
+
+      .faq-new-answer {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+      }
+
+      .faq-answer-text {
+        grid-column: 1 !important;
+        font-size: 0.92rem;
+      }
+
+      .faq-answer-image {
+        grid-column: 1 !important;
+        width: 100%;
+      }
+
+      /* ── CTA SECTION ── */
+      .cta-section {
+        padding: 48px 20px;
+      }
+
+      .cta-section-inner {
+        grid-template-columns: 1fr !important;
+        gap: 32px;
+      }
+
+      .cta-section h2 {
+        font-size: 2rem !important;
+      }
+
+      .cta-section-subtitle {
+        font-size: 0.95rem;
+      }
+
+      .cta-section-image {
+        aspect-ratio: 16 / 10;
+        order: 2;
+      }
+
+      .cta-section-text {
+        order: 1;
+        max-width: 100%;
+      }
+
+      /* CTA live card responsive */
+      .cta-live-card {
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px;
+      }
+
+      .cta-live-number {
+        font-size: 1.2rem;
+      }
+
+      .cta-live-btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+
+      /* ── CONTACT BAND ── */
+      .contact-band-inner {
+        padding: 36px 20px;
+      }
+
+      .contact-band h3 {
+        font-size: 1.4rem;
+      }
+
+      /* ── FOOTER ── */
+      .footer-new {
+        padding: 80px 20px 32px;
+        min-height: auto;
+      }
+
+      .footer-top-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .footer-new-brand-text {
+        font-size: 1.8rem;
+      }
+
+      .footer-new-middle {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 24px;
+        padding: 0 0 40px;
+      }
+
+      .footer-new-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer-new-bottom {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-watermark img {
+        width: 200%;
+      }
+
+      /* ── COMPARISON ── */
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* ── FEATURES ── */
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* ── STEPS ── */
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .step-divider {
+        display: none;
+      }
+
+      .step {
+        padding: 0;
+      }
+    }
+
+    /* ──────────────────────────────────────────────
+       NEW SECTIONS (v2 relaunch)
+       ────────────────────────────────────────────── */
+
+    /* Testimonial NEW — 16:9 image left, identity + quote right */
+    .testimonial-bento-new {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* 16:9 image placeholder */
+    .testimonial-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #c4c4a9 url('/images/juergen-testimonial-neu.jpg') center/cover no-repeat;
+    }
+
+    /* Right column: identity + stats stacked */
+    .testimonial-right {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      padding-top: 4px;
+    }
+
+    .testimonial-identity {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .testimonial-name-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .testimonial-name {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 1.75rem;
+      color: var(--text);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+    }
+
+    .testimonial-role {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-top: 6px;
+      line-height: 1.35;
+    }
+
+    .testimonial-logo {
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .testimonial-logo svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Editorial quote (replaces stats) */
+    .testimonial-quote {
+      padding: 8px 0 0;
+      position: relative;
+    }
+
+    .testimonial-quote-mark {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 5rem;
+      line-height: 0.6;
+      color: var(--text);
+      margin-bottom: 18px;
+      letter-spacing: -0.05em;
+    }
+
+    .testimonial-quote-text {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 1.1rem;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin: 0 0 28px 0;
+    }
+
+    .testimonial-quote-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(40, 37, 36, 0.12);
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .testimonial-quote-eyebrow {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(40, 37, 36, 0.5);
+    }
+
+    /* (legacy) Stats — vertical list, big number + label inline next to it, separated by lines */
+    .testimonial-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .key-number-card {
+      background: transparent;
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 0;
+      border-top: 1px solid rgba(40, 37, 36, 0.1);
+      position: relative;
+    }
+
+    .key-number-card::before {
+      content: attr(data-num);
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: rgba(40, 37, 36, 0.35);
+      text-transform: uppercase;
+      align-self: center;
+    }
+
+    .key-number-card-content {
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+    }
+
+    .key-number-card:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .key-number-card:last-of-type {
+      padding-bottom: 0;
+    }
+
+    .key-number-num {
+      font-family: 'Archivo', sans-serif;
+      font-size: 2.6rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      font-weight: 600;
+      flex-shrink: 0;
+      min-width: 90px;
+    }
+
+    .key-number-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.35;
+      font-weight: 500;
+    }
+
+    @media (max-width: 900px) {
+      .testimonial-bento-new {
+        grid-template-columns: 1fr;
+      }
+      .key-number-num { font-size: 2.4rem; }
+    }
+
+    /* Pricing NEW — back to white */
+    .pricing-new {
+      background: var(--bg);
+      padding: 64px 32px;
+    }
+
+    .pricing-new-header {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+    }
+
+    .pricing-new-header h2 {
+      color: var(--text);
+      margin-bottom: 10px;
+      max-width: 900px;
+    }
+
+    .pricing-new-header p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 900px;
+    }
+
+    /* Three pricing plans side-by-side */
+    .pricing-plans {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: var(--text);
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 0.65rem;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .pricing-new-card {
+      background: var(--white);
+      border: 1px solid rgba(40, 37, 36, 0.08);
+      border-radius: 16px;
+      padding: 22px 20px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .pricing-new-card.featured {
+      border: 1px solid var(--text);
+    }
+
+    .pricing-tier-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .pricing-tier-name {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .pricing-tier-tagline {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+
+    .pricing-new-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .pricing-new-amount {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 2.4rem;
+      line-height: 1;
+      color: var(--text);
+      letter-spacing: -0.03em;
+    }
+
+    .pricing-new-period {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .pricing-new-yearly {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    .pricing-new-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 10px 0;
+    }
+
+    .pricing-new-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 14px 0;
+      text-align: left;
+    }
+
+    .pricing-new-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 5px 0;
+      font-size: 0.8rem;
+      color: var(--text);
+      border-bottom: 1px solid rgba(40,37,36,0.06);
+    }
+
+    .pricing-new-features li:last-child { border-bottom: none; }
+
+    .pricing-new-features li .check {
+      color: #2f8a3f;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-size: 0.85rem;
+    }
+
+    .pricing-new-cta {
+      display: block;
+      width: 100%;
+      background: var(--accent);
+      color: var(--white);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 9999px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-sizing: border-box;
+      margin-top: auto;
+    }
+
+    .pricing-new-cta.outlined {
+      background: var(--white);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .pricing-new-cta.outlined:hover {
+      background: var(--bg);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .pricing-new-cta:hover {
+      background: #c88500;
+      transform: translateY(-1px);
+    }
+
+    .pricing-new-note {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    /* Integration service add-on card — flat, below plans */
+    .pricing-addon {
+      max-width: 1200px;
+      margin: 16px auto 0;
+      background: var(--white);
+      border: 1px solid rgba(40, 37, 36, 0.08);
+      border-radius: 16px;
+      padding: 18px 22px;
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .pricing-addon-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(40, 37, 36, 0.06);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pricing-addon-icon svg { width: 22px; height: 22px; }
+
+    .pricing-addon-text h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 4px 0;
+    }
+
+    .pricing-addon-text p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    .pricing-addon-price {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .pricing-addon-price small {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .pricing-addon-cta {
+      padding: 12px 20px;
+      background: var(--text);
+      color: var(--white);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .pricing-addon-cta:hover { background: #1c1b1b; }
+
+    @media (max-width: 900px) {
+      .pricing-plans { grid-template-columns: 1fr; }
+      .pricing-addon {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 16px;
+      }
+      .pricing-addon-icon { margin: 0 auto; }
+    }
+
+    /* FAQ NEW — reiner.ai Style */
+    .faq-new {
+      background: var(--white);
+      padding: 64px 32px;
+    }
+
+    .faq-new-header {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+    }
+
+    .faq-new-header h2 {
+      color: var(--text);
+      margin-bottom: 10px;
+      max-width: 900px;
+    }
+
+    .faq-new-header p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 900px;
+    }
+
+    .faq-new-list {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .faq-new-item {
+      border-bottom: 1px solid rgba(40, 37, 36, 0.12);
+    }
+
+    .faq-new-item:first-of-type {
+      border-top: 1px solid rgba(40, 37, 36, 0.12);
+    }
+
+    /* Summary line: eyebrow label + headline + plus icon */
+    .faq-new-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 26px 0;
+      display: grid;
+      grid-template-columns: 200px 1fr auto;
+      align-items: center;
+      gap: 32px;
+      transition: color 0.2s ease;
+    }
+
+    .faq-new-item summary::-webkit-details-marker { display: none; }
+    .faq-new-item summary::marker { content: ''; }
+
+    .faq-summary-eyebrow {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(40, 37, 36, 0.5);
+    }
+
+    .faq-summary-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 1.5rem;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--text);
+    }
+
+    .faq-new-item summary:hover .faq-summary-title { color: rgba(40,37,36,0.7); }
+
+    .faq-new-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(40, 37, 36, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--text);
+      flex-shrink: 0;
+      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .faq-new-item[open] .faq-new-icon {
+      transform: rotate(45deg);
+      background: var(--text);
+      color: var(--white);
+      border-color: var(--text);
+    }
+
+    /* Open content: description + image side by side */
+    .faq-new-answer {
+      display: grid;
+      grid-template-columns: 200px 1fr 200px;
+      gap: 32px;
+      padding: 0 0 36px 0;
+      align-items: start;
+    }
+
+    .faq-answer-text {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      grid-column: 2;
+      max-width: 600px;
+    }
+
+    .faq-answer-image {
+      width: 200px;
+      height: 140px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: rgba(40,37,36,0.06);
+      grid-column: 3;
+    }
+
+    .faq-answer-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 900px) {
+      .faq-new-item summary {
+        grid-template-columns: 1fr auto;
+      }
+      .faq-summary-eyebrow {
+        grid-row: 1;
+        grid-column: 1 / -1;
+        margin-bottom: -8px;
+      }
+      .faq-summary-title {
+        grid-column: 1;
+        font-size: 1.2rem;
+      }
+      .faq-new-answer {
+        grid-template-columns: 1fr;
+      }
+      .faq-answer-text { grid-column: 1; }
+      .faq-answer-image { grid-column: 1; width: 100%; }
+    }
+
+    /* CTA Section (Demo-Anfrage) — card that pops out on light bg */
+    /* CTA Section — split layout: text left, image right */
+    .cta-section {
+      position: relative;
+      padding: 64px 32px;
+      background: var(--bg);
+    }
+
+    .cta-section-inner {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .cta-section-text {
+      max-width: 540px;
+    }
+
+    .cta-pre-headline {
+      display: block;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: rgba(40, 37, 36, 0.5);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .cta-section h2 {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 3rem;
+      line-height: 0.95;
+      color: var(--text);
+      letter-spacing: -0.04em;
+      margin: 0 0 20px 0;
+    }
+
+    .cta-section h2 em {
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .cta-section-subtitle {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin: 0 0 36px;
+      line-height: 1.55;
+      max-width: 440px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .cta-trust-line {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.78rem;
+      color: rgba(40, 37, 36, 0.5);
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cta-section-image {
+      width: 100%;
+      aspect-ratio: 1.1 / 1;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #e5dfd3;
+    }
+
+    .cta-section-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 900px) {
+      .cta-section-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .cta-section h2 { font-size: 2.5rem; }
+      .cta-section-image { aspect-ratio: 16/9; }
+    }
+
+    /* Legacy (unused) */
+    .cta-card-left-legacy {
+      justify-content: center;
+    }
+
+    .cta-card-portrait {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c4c4a9 0%, #8a8776 100%);
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+
+    .cta-card-left h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .cta-card-left p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 22px;
+      max-width: 280px;
+    }
+
+    .cta-card-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cta-btn-secondary {
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--white);
+      color: var(--text);
+      border: 1px solid var(--border);
+      transition: border-color 0.2s ease;
+    }
+
+    .cta-btn-secondary:hover { border-color: var(--accent); }
+
+    .cta-btn-primary {
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--accent);
+      color: var(--white);
+      border: 1px solid var(--accent);
+      transition: background 0.2s ease;
+    }
+
+    .cta-btn-primary:hover { background: #c88500; }
+
+    .cta-card-right {
+      padding: 40px;
+    }
+
+    .cta-card-right p {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.5;
+      margin: 0 0 24px;
+    }
+
+    .cta-logo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .cta-logo-cell {
+      aspect-ratio: 2.2 / 1;
+      background: rgba(196,196,169,0.18);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(51,45,45,0.35);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    /* Contact band — small strip before footer */
+    .contact-band {
+      position: relative;
+      min-height: 260px;
+      background: #2d2c2c url('/images/baustelle-bg.png') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .contact-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(45,44,44,0.7) 0%, rgba(45,44,44,0.5) 50%, rgba(45,44,44,0.7) 100%);
+    }
+
+    .contact-band-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 48px 32px;
+    }
+
+    .contact-band h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+
+    .contact-band-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .contact-band-btn::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--white);
+    }
+
+    .contact-band-btn:hover { background: #c88500; }
+
+    .cta-pre-headline {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .cta-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      line-height: 1.1;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin: 0 0 16px 0;
+    }
+
+    .cta-section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin: 0 auto 32px;
+      max-width: 620px;
+    }
+
+    .cta-section-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .cta-section-btn:hover {
+      background: #c88500;
+      transform: translateY(-1px);
+    }
+
+    .cta-founder {
+      margin-top: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .cta-founder-portrait {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c4c4a9 0%, #8a8776 100%);
+      flex-shrink: 0;
+    }
+
+    .cta-trust {
+      margin-top: 56px;
+    }
+
+    .cta-trust-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .cta-trust-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .cta-trust-logo {
+      width: 120px;
+      height: 48px;
+      background: rgba(196,196,169,0.35);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* Footer NEW — full-screen image bg + light overlay + watermark (walter style) */
+    .footer-new {
+      position: relative;
+      color: var(--white);
+      padding: 120px 32px 40px;
+      overflow: hidden;
+      background: #1c1b1b url('/images/footer-bg-small.webp') center/cover no-repeat;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-new::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 30%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.65) 100%);
+      z-index: 1;
+    }
+
+    .footer-new-inner {
+      position: relative;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-new-middle {
+      margin-top: auto;
+      padding-bottom: 48px;
+    }
+
+    /* Big watermark SVG — half clipped at bottom */
+    .footer-watermark {
+      position: absolute;
+      bottom: -80px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 1;
+      user-select: none;
+    }
+
+    .footer-watermark img {
+      width: 130%;
+      max-width: 2200px;
+      height: auto;
+      opacity: 0.22;
+    }
+
+    /* Top row: brand + email */
+    .footer-top-row {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 32px;
+      flex: 1;
+    }
+
+    .footer-brand-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 380px;
+    }
+
+    .footer-brand-tagline {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.45;
+    }
+
+    .footer-email {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-email:hover {
+      color: var(--accent);
+    }
+
+    .footer-new-middle {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 40px;
+      padding: 0 0 64px;
+      align-items: start;
+    }
+
+    .footer-new-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-new-brand-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--accent);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.4rem;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .footer-new-brand-text {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 2.8rem;
+      color: var(--white);
+      letter-spacing: -0.04em;
+    }
+
+    .footer-new-col h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin: 0 0 16px 0;
+    }
+
+    .footer-new-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-new-col a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-new-col a:hover { color: var(--accent); }
+
+    .footer-new-bottom {
+      position: relative;
+      z-index: 2;
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .footer-meta {
+      font-family: 'Archivo', sans-serif;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .footer-new-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-new-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .footer-new-social a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    @media (max-width: 900px) {
+      .footer-new-top h2 { font-size: 2.4rem; }
+      .footer-new-middle {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+      .cta-section h2 { font-size: 2.2rem; }
+    }
+
+    @media (max-width: 600px) {
+      .footer-new-middle { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════ NAVBAR ════ -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="navbar-left">
+        <a href="#" class="navbar-logo"><img src="images/meisterfon-logo-white.svg" alt="Meisterfon" class="navbar-logo-img"></a>
+        <div class="navbar-separator"></div>
+        <ul class="navbar-links">
+          <li><a href="#funktionen">Funktionen</a></li>
+          <li><a href="#preise">Preise</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="navbar-right navbar-right-desktop">
+        <a href="#" class="navbar-login">Login ↗</a>
+        <a href="#preise" class="navbar-cta">Jetzt loslegen</a>
+      </div>
+      <button class="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#funktionen" onclick="closeMobileMenu()">Funktionen</a>
+    <a href="#preise" onclick="closeMobileMenu()">Preise</a>
+    <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+    <a href="#preise" class="navbar-cta" onclick="closeMobileMenu()" style="text-align:center;">Jetzt loslegen</a>
+  </div>
+
+  <!-- ════ HERO ════ -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+
+    <!-- Rotating circle -->
+    <div class="rotating-circle">
+      <img src="images/circle-text.webp" alt="Meisterfon">
+    </div>
+
+    <!-- Transcript + Notifications — positioned directly in hero -->
+    <div class="hero-right">
+      <div class="transcript-card" style="margin-bottom: 12px;">
+        <div class="transcript-header">
+          <span class="live-dot"></span>
+          <span style="font-weight:600;">Live Transkript</span>
+          <span>14:23</span>
+        </div>
+        <div class="transcript-body" id="transcriptBody"></div>
+      </div>
+      <div class="notification-stack" id="notificationStack">
+        <div class="sms-card" id="smsCard1">
+          <div class="sms-card-title">&#128241; SMS an dich</div>
+          <div class="sms-card-body">Zusammenfassung: Termin Di 9:00 mit Fr. Meier. Regenrinne begutachten. Material mitbringen.</div>
+          <div class="sms-card-footer">Gesendet vor 12 Sek.</div>
+        </div>
+        <div class="sms-card" id="smsCard2">
+          <div class="sms-card-title">&#128241; SMS an Frau Meier</div>
+          <div class="sms-card-body">Termin Dienstag 9:00 Uhr. Regenrinne wird begutachtet. Material wird mitgebracht. &mdash; M&uuml;ller Dach &amp; Solar</div>
+          <div class="sms-card-footer">Gesendet vor 23 Sek.</div>
+        </div>
+        <div class="sms-card email-card" id="emailCard">
+          <div class="sms-card-title">&#9993; E-Mail ans B&uuml;ro</div>
+          <div class="sms-card-body"><strong>Betreff:</strong> Gespr&auml;ch Fr. Meier<br>Termin Di 9:00 &middot; Regenrinne &middot; Material<br><strong>To-do:</strong> Termin eintragen, Material bestellen</div>
+          <div class="sms-card-footer">Zugestellt an buero@mueller-dach.de</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="trust-badges">
+            <span class="trust-badge">&#127465;&#127466; Made in Germany</span>
+            <span class="trust-badge">&#10003; DSGVO konform</span>
+            <span class="trust-badge">&#128205; Server Frankfurt</span>
+          </div>
+          <h1>Kein Gespr&auml;ch mehr vergessen.</h1>
+          <p>Meisterfon ist die Gesch&auml;ftstelefonie f&uuml;r Handwerker, die lieber Auftr&auml;ge erledigen als Notizen schreiben.</p>
+          <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+            <a href="#preise" class="hero-cta">Jetzt loslegen</a>
+            <a href="tel:+498941432183" class="hero-cta hero-cta-phone">&#9742; Jetzt anrufen</a>
+          </div>
+          <div class="hero-live-test">
+            <div class="hero-live-badge">LIVE TESTEN</div>
+            <div class="hero-live-content">
+              <a href="tel:+498941432183" class="hero-live-number">089 4143 2183</a>
+              <span class="hero-live-text">Ruf jetzt an &mdash; erlebe in 60 Sekunden, wie <span class="brand-meisterfon">Meisterfon</span> dein Gespr&auml;ch zusammenfasst.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ HOW IT WORKS (auto-progress, bordered card) ════ -->
+  <section class="how-new" id="funktionen">
+    <div class="how-new-header">
+      <div class="section-eyebrow-row">
+        <span class="section-eyebrow">Funktionen</span>
+        <span class="section-number">01 / 05</span>
+      </div>
+      <h2>Wie funktioniert <span class="brand-meisterfon">Meisterfon</span>?</h2>
+      <p>Eine Büronummer. Dein normales Handy. Keine App.</p>
+    </div>
+
+    <div class="how-card">
+      <div class="how-grid">
+        <!-- LEFT: visual + iPhone + action cards -->
+        <div class="how-visual">
+          <img src="images/baustelle-bg.png" alt="" class="how-visual-bg" />
+          <div class="how-iphone-stage">
+            <img src="images/step-1.webp" alt="" class="how-visual-iphone active" data-step="1" />
+            <img src="images/step-2.webp" alt="" class="how-visual-iphone" data-step="2" />
+            <img src="images/step-4.webp" alt="" class="how-visual-iphone" data-step="3" />
+            <img src="images/step-3.webp" alt="" class="how-visual-iphone" data-step="4" />
+          </div>
+          <div class="how-action-stage">
+            <!-- Scene 1: Kunde ruft an — Begrüßung + Einwilligung -->
+            <div class="how-action-scene active" data-step="1">
+              <div class="scene-card">
+                <div class="scene-card-header">
+                  <span class="scene-dot green"></span>
+                  <span>Eingehender Anruf</span>
+                </div>
+                <div class="scene-caller">
+                  <div class="scene-avatar">FM</div>
+                  <div>
+                    <div class="scene-caller-name">Frau Meier</div>
+                    <div class="scene-caller-num">+49 151 234 5678</div>
+                  </div>
+                </div>
+              </div>
+              <div class="scene-card">
+                <div class="scene-card-header">
+                  <span class="scene-dot amber"></span>
+                  <span>Ansage</span>
+                </div>
+                <div class="scene-body" style="font-size:0.72rem;font-weight:400;line-height:1.4;font-style:italic;">
+                  &bdquo;Gr&uuml;&szlig;e, hier Sanit&auml;r M&uuml;ller GmbH. Stimmen Sie zu, dass ich Notizen machen darf?&ldquo;
+                </div>
+              </div>
+              <div class="scene-card" style="padding:8px 12px;">
+                <div style="display:flex;flex-direction:column;gap:4px;">
+                  <div class="scene-check"><span class="scene-check-icon" style="background:#10b981;">1</span>Ja, Notizen machen</div>
+                  <div class="scene-check"><span class="scene-check-icon" style="background:rgba(255,255,255,0.3);color:rgba(255,255,255,0.7);">2</span>Nein danke</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scene 2: Telefonat — Live-Transkript (same style as Hero) -->
+            <div class="how-action-scene" data-step="2">
+              <div class="transcript-card" style="margin:0;width:100%;max-width:250px;">
+                <div class="transcript-header">
+                  <span class="live-dot"></span>
+                  <span style="font-weight:600;">Live Transkript</span>
+                  <span>03:42</span>
+                </div>
+                <div class="transcript-body" id="step2Transcript" style="min-height:120px;max-height:320px;overflow-y:auto;padding:10px;gap:6px;">
+                </div>
+              </div>
+            </div>
+
+            <!-- Scene 3: Telefonat beendet → SMS an Kunde -->
+            <div class="how-action-scene" data-step="3">
+              <div class="scene-card" style="padding:8px 12px;">
+                <div class="scene-card-header">
+                  <span class="scene-dot" style="background:rgba(255,255,255,0.5);"></span>
+                  <span>Telefonat beendet &middot; 02:14</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:3px;margin-top:2px;">
+                  <div class="scene-check"><span class="scene-check-icon">&#10003;</span>Termin erkannt: Di 9:00</div>
+                  <div class="scene-check"><span class="scene-check-icon">&#10003;</span>Aufgabe: Regenrinne</div>
+                  <div class="scene-check"><span class="scene-check-icon">&#10003;</span>Material mitbringen</div>
+                </div>
+              </div>
+              <div class="scene-card">
+                <div class="scene-card-header">
+                  <span class="scene-dot amber"></span>
+                  <span>&#128241; SMS an Frau Meier</span>
+                </div>
+                <div class="scene-body" style="font-size:0.72rem;font-weight:400;line-height:1.4;">
+                  Hier ist die Zusammenfassung Ihres Gespr&auml;chs:
+                </div>
+                <div style="margin-top:6px;padding:6px 9px;background:rgba(232,160,0,0.2);border:1px solid rgba(232,160,0,0.3);border-radius:6px;font-size:0.65rem;color:rgba(255,255,255,0.95);display:flex;align-items:center;gap:5px;">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                  meisterfon.de/g/a7f3x
+                </div>
+                <div class="scene-meta" style="margin-top:5px;">Zugestellt vor 8 Sek.</div>
+              </div>
+            </div>
+
+            <!-- Scene 4: SMS an dich (amber) + E-Mail ans Büro (blau-getönt) -->
+            <div class="how-action-scene" data-step="4">
+              <div class="scene-card" style="background:rgba(232,160,0,0.12);border-color:rgba(232,160,0,0.25);">
+                <div class="scene-card-header">
+                  <span class="scene-dot amber"></span>
+                  <span>&#128241; SMS an dich</span>
+                </div>
+                <div class="scene-body" style="font-weight:600;margin-bottom:3px;font-size:0.75rem;">Zusammenfassung Fr. Meier</div>
+                <div style="display:flex;flex-direction:column;gap:3px;margin-top:3px;">
+                  <div class="scene-check"><span class="scene-check-icon">&#10003;</span>Termin: Di 9:00</div>
+                  <div class="scene-check"><span class="scene-check-icon">&#10003;</span>Regenrinne begutachten</div>
+                  <div class="scene-check"><span class="scene-check-icon">&#10003;</span>Material mitbringen</div>
+                </div>
+              </div>
+              <div class="scene-card" style="background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.2);">
+                <div class="scene-card-header">
+                  <span class="scene-dot blue"></span>
+                  <span>&#9993; E-Mail ans B&uuml;ro</span>
+                </div>
+                <div class="scene-body" style="font-size:0.68rem;font-weight:400;">buero@mueller-dach.de</div>
+                <div style="display:flex;flex-direction:column;gap:3px;margin-top:3px;">
+                  <div class="scene-check"><span class="scene-check-icon">&#10003;</span>Termin eintragen</div>
+                  <div class="scene-check"><span class="scene-check-icon">&#10003;</span>Material bestellen</div>
+                </div>
+                <div class="scene-meta" style="margin-top:5px;">Alle auf dem gleichen Stand &#10003;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: feature list -->
+        <div class="how-features" id="howFeatures">
+          <div class="how-feature active" data-step="1">
+            <div class="how-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <div class="how-feature-body">
+              <h3>Dein Kunde ruft an</h3>
+              <p>Du brauchst keine App. Kunden rufen deine Meisterfon-Nummer ganz normal an und w&auml;hlen per Tastendruck, ob f&uuml;r dich Notizen gemacht werden sollen.</p>
+            </div>
+            <div class="how-feature-progress"><div class="how-feature-progress-bar"></div></div>
+          </div>
+
+          <div class="how-feature" data-step="2">
+            <div class="how-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+            </div>
+            <div class="how-feature-body">
+              <h3>Telefonat wird transkribiert</h3>
+              <p>Du telefonierst wie immer. Im Hintergrund transkribiert Meisterfon das Gespr&auml;ch live &mdash; Termine, Zusagen und Aufgaben werden automatisch erkannt.</p>
+            </div>
+            <div class="how-feature-progress"><div class="how-feature-progress-bar"></div></div>
+          </div>
+
+          <div class="how-feature" data-step="3">
+            <div class="how-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <div class="how-feature-body">
+              <h3>Dein Kunde bekommt die Zusammenfassung</h3>
+              <p>Direkt nach dem Gespr&auml;ch erh&auml;lt dein Kunde eine SMS mit Link zur Zusammenfassung. Mega Kundenbindung &mdash; kein anderer Handwerker macht das.</p>
+            </div>
+            <div class="how-feature-progress"><div class="how-feature-progress-bar"></div></div>
+          </div>
+
+          <div class="how-feature" data-step="4">
+            <div class="how-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="17 1 21 5 17 9"/>
+                <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+                <polyline points="7 23 3 19 7 15"/>
+                <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+              </svg>
+            </div>
+            <div class="how-feature-body">
+              <h3>Du &amp; dein B&uuml;ro bekommt alles</h3>
+              <p>Du bekommst eine SMS mit Zusammenfassung. Dein B&uuml;ro eine E-Mail mit allen To-Dos. Alle auf dem gleichen Stand &mdash; in 60 Sekunden.</p>
+            </div>
+            <div class="how-feature-progress"><div class="how-feature-progress-bar"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="how-trust">
+      <span class="how-trust-item">&#10003; Setup in 10 Min</span>
+      <span class="how-trust-divider"></span>
+      <span class="how-trust-item">&#10003; Keine App</span>
+      <span class="how-trust-divider"></span>
+      <span class="how-trust-item">&#10003; DSGVO-konform</span>
+      <span class="how-trust-divider"></span>
+      <span class="how-trust-item">&#10003; Server Frankfurt</span>
+      <span class="how-trust-divider"></span>
+      <span class="how-trust-item">&#10003; Eigene Gesch&auml;ftsnummer</span>
+    </div>
+  </section>
+
+  <!-- ════ SECURITY / DSGVO ════ -->
+  <section class="security" id="sicherheit">
+    <div class="security-header">
+      <div class="section-eyebrow-row">
+        <span class="section-eyebrow">Sicherheit</span>
+        <span class="section-number">02 / 05</span>
+      </div>
+      <h2>Sicher. Deutsch. Rechtssauber.</h2>
+      <p>Made in Germany, DSGVO-konform, Server in Frankfurt &mdash; rechtssauber ab Sekunde 1.</p>
+    </div>
+
+    <div class="security-grid">
+      <!-- Card 1: Made in Germany -->
+      <div class="security-card fade-up">
+        <h3>Made in Germany</h3>
+        <p>Meisterfon wird in Deutschland entwickelt, betrieben und supportet. Unser Team sitzt in Stuttgart und M&uuml;nchen &mdash; alle Audio- und Textdaten bleiben in Hetzner-Rechenzentren Frankfurt. Keine US-Cloud, kein CLOUD Act.</p>
+        <div class="trust-icons-row">
+          <div class="trust-icon-item">
+            <div class="trust-icon-flag"><span style="background:#000;"></span><span style="background:#dd0000;"></span><span style="background:#ffcc00;"></span></div>
+            <div class="trust-icon-text"><strong>Made in</strong><br>Germany</div>
+          </div>
+          <div class="trust-icon-item">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#282524" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            <div class="trust-icon-text"><strong>DSGVO</strong><br><span style="color:var(--accent);font-size:0.6rem;">&#9733;&#9733;&#9733; konform</span></div>
+          </div>
+          <div class="trust-icon-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3" fill="#c0392b" fill-opacity="0.2"/></svg>
+            <div class="trust-icon-text"><strong>Serverstandort</strong><br>Frankfurt</div>
+          </div>
+        </div>
+        <div class="security-card-visual">
+          <img src="images/rechts-bild-1.jpg" alt="Handwerker auf der Baustelle" class="security-card-img">
+          <div class="security-card-circle" style="left: 58%; top: 55%; transform: translate(-50%, -50%);">
+            <img src="images/circle-text.webp" alt="">
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Rechtssauber -->
+      <div class="security-card fade-up">
+        <h3>Rechtssauber ab Sekunde 1</h3>
+        <p>Vor jedem Gespr&auml;ch wird dein Kunde gefragt: Taste 1 = Transkription an, Taste 2 = normales Gespr&auml;ch. So verlangt es &sect;201 StGB. TLS 1.3 verschl&uuml;sselt &amp; 2FA-Authentifizierung.</p>
+        <a href="#faq" class="security-card-link">Zur Rechtsgrundlage</a>
+        <div class="security-card-visual slider-compare" id="sliderCompare" style="--sl-top:45%;--sl-bot:65%;">
+          <div class="slider-img-left-wrap">
+            <img src="images/slider-left.webp" alt="Bauarbeiter am Telefon">
+          </div>
+          <img src="images/cta-elektriker.webp" alt="Elektriker am Schaltkasten" class="slider-img-right">
+          <div class="slider-edge"></div>
+          <div class="slider-handle" id="sliderHandle">&#10094;&#10095;</div>
+          <div class="slider-overlay slider-overlay-left" id="sliderOL1L">
+            <div class="slider-overlay-header">
+              <div class="slider-overlay-dot" style="background:#10b981;"></div>
+              <div class="slider-overlay-title">Einwilligung</div>
+            </div>
+            <div class="slider-overlay-body">
+              <span class="slider-overlay-line" data-threshold="0.2">1 &rarr; Transkript</span>
+              <span class="slider-overlay-line" data-threshold="0.5">2 &rarr; Kein Transkript</span>
+            </div>
+          </div>
+          <div class="slider-overlay slider-overlay-right" id="sliderOL1R">
+            <div class="slider-overlay-header">
+              <div class="slider-overlay-dot" style="background:var(--accent);"></div>
+              <div class="slider-overlay-title">Zusammenfassung</div>
+            </div>
+            <div class="slider-overlay-body">
+              <span class="slider-overlay-line" data-threshold="0.2">Herr Meier &middot; Bauherr</span>
+              <span class="slider-overlay-line" data-threshold="0.4">Transkript vorliegend</span>
+              <span class="slider-overlay-line" data-threshold="0.6">To-Do: Fenster montieren</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Deine Daten -->
+      <div class="security-card fade-up">
+        <h3>Du bestimmst, was bleibt</h3>
+        <p>Jeder Kunde, jedes Gespr&auml;ch: L&ouml;schung mit einem Klick. DSGVO-Exporte auf Knopfdruck. Standard-L&ouml;schfrist 90 Tage. Kein Lock-in, keine Hintert&uuml;ren &mdash; deine Daten geh&ouml;ren dir.</p>
+        <a href="#faq" class="security-card-link">Zum Datenschutz</a>
+        <div class="security-card-visual slider-compare" id="sliderCompare2" style="--sl-top:45%;--sl-bot:65%;">
+          <div class="slider-img-left-wrap">
+            <img src="images/slider2-right.webp" alt="B&uuml;rokraft am Computer" style="transform:scaleX(-1);">
+          </div>
+          <img src="images/slider2-left.webp" alt="Heizungstechniker am Telefon" class="slider-img-right">
+          <div class="slider-edge"></div>
+          <div class="slider-handle" id="sliderHandle2">&#10094;&#10095;</div>
+          <div class="slider-overlay slider-overlay-left" id="sliderOL2L">
+            <div class="slider-overlay-header">
+              <div class="slider-overlay-dot" style="background:#3b82f6;"></div>
+              <div class="slider-overlay-title">E-Mail ans B&uuml;ro</div>
+            </div>
+            <div class="slider-overlay-body">
+              <span class="slider-overlay-line" data-threshold="0.2">2 neue To-Dos</span>
+              <span class="slider-overlay-line" data-threshold="0.4">Termin eintragen</span>
+              <span class="slider-overlay-line" data-threshold="0.6"><span class="slider-check">&#10003;</span> ToDos in ERP importiert</span>
+            </div>
+          </div>
+          <div class="slider-overlay slider-overlay-right" id="sliderOL2R">
+            <div class="slider-overlay-header">
+              <div class="slider-overlay-dot" style="background:#ef4444;"></div>
+              <div class="slider-overlay-title">Live Transkript</div>
+            </div>
+            <div class="slider-overlay-body">
+              <span class="slider-overlay-line" data-threshold="0.2">00:42 &middot; Aufzeichnung</span>
+              <span class="slider-overlay-line" data-threshold="0.4">&bdquo;Heizung pr&uuml;fen...&ldquo;</span>
+              <span class="slider-overlay-line" data-threshold="0.6">Termin erkannt</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ TESTIMONIAL / CASE STUDY ════ -->
+  <section class="testimonial">
+    <div class="testimonial-header">
+      <div class="section-eyebrow-row">
+        <span class="section-eyebrow">Meisterfon in der Praxis</span>
+        <span class="section-number">03 / 05</span>
+      </div>
+      <h2>So nutzen Handwerker <span class="brand-meisterfon">Meisterfon</span> bereits.</h2>
+      <p>Echte Betriebe, echte Zahlen, echte Zeitersparnis &mdash; ein Blick hinter die Kulissen.</p>
+    </div>
+
+    <div class="testimonial-bento-new">
+      <!-- 16:9 image placeholder (no play button) -->
+      <div class="testimonial-image fade-up">
+        <div class="security-card-circle" style="left: 32%; top: 48%; transform: translate(-50%, -50%); width: 220px; height: 220px;">
+          <img src="images/circle-text.webp" alt="">
+        </div>
+      </div>
+
+      <!-- Right column: identity + editorial quote -->
+      <div class="testimonial-right">
+        <div class="testimonial-identity fade-up">
+          <div>
+            <div class="testimonial-name">J&uuml;rgen V&ouml;gele</div>
+            <div class="testimonial-role">Inhaber &middot; V&ouml;gele Elektrotechnik</div>
+          </div>
+          <div class="testimonial-logo">
+            <svg viewBox="0 0 360 337" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M281.832 85.4028H235.189L162.27 249.636H205.627L281.832 85.4028Z" fill="#9a9a9a"/>
+              <path d="M125.479 85.3989H78.1797L155.041 249.632H199.056L125.479 85.3989Z" fill="#282524"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="testimonial-quote fade-up">
+          <div class="testimonial-quote-mark">&ldquo;</div>
+          <blockquote class="testimonial-quote-text">
+            Meisterfon ist einfach top: Ich bin so oft unterwegs auf der Baustelle &mdash; ich habe keine Zeit mir Gedanken drum zu machen, dass ich Notizen machen kann. Das l&ouml;st es &mdash; alles ist da. Und das Beste: Ich brauche noch nicht mal eine xte App, sondern einfach mein ganz normales Handy reicht. Das hei&szlig;t: Keine KI geht ans Telefon &mdash; sondern ich. Die Kundenbeziehung bleibt tiptop und ich vergesse nichts.
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ PRICING NEW ════ -->
+  <section class="pricing-new" id="preise">
+    <div class="pricing-new-header">
+      <div class="section-eyebrow-row">
+        <span class="section-eyebrow">Pricing</span>
+        <span class="section-number">04 / 05</span>
+      </div>
+      <h2>Drei Plans, die mit dir wachsen.</h2>
+      <p>Vom Solo-Handwerker bis zum gr&ouml;&szlig;eren Betrieb &mdash; flexibel monatlich k&uuml;ndbar.</p>
+    </div>
+
+    <div class="pricing-plans">
+      <!-- Plan 1: Starter (Einzelpersonen) -->
+      <div class="pricing-new-card fade-up">
+        <div class="pricing-tier-label">Starter</div>
+        <div class="pricing-tier-name">F&uuml;r Einzelpersonen</div>
+        <div class="pricing-tier-tagline">Solo-Handwerker, die sofort starten wollen.</div>
+
+        <div class="pricing-new-price">
+          <span class="pricing-new-amount">79 &euro;</span>
+          <span class="pricing-new-period">/Monat</span>
+        </div>
+        <div class="pricing-new-yearly">1 Nummer &middot; 1 User</div>
+        <div class="pricing-new-divider"></div>
+        <ul class="pricing-new-features">
+          <li><span class="check">&#10003;</span>Eigene Gesch&auml;ftsnummer</li>
+          <li><span class="check">&#10003;</span>Unbegrenzte Gespr&auml;che</li>
+          <li><span class="check">&#10003;</span>KI-Zusammenfassung nach jedem Gespr&auml;ch</li>
+          <li><span class="check">&#10003;</span>SMS an Kunden automatisch</li>
+          <li><span class="check">&#10003;</span>B&uuml;ro-Zugang in Echtzeit</li>
+          <li><span class="check">&#10003;</span>DSGVO-konform, deutsche Server</li>
+        </ul>
+        <a href="#" class="pricing-new-cta outlined">Jetzt loslegen</a>
+        <div class="pricing-new-note">Setup in 10 Minuten</div>
+      </div>
+
+      <!-- Plan 2: Professional (kleinere Teams) — FEATURED -->
+      <div class="pricing-new-card featured fade-up">
+        <div class="pricing-badge">Beliebteste Wahl</div>
+        <div class="pricing-tier-label">Professional</div>
+        <div class="pricing-tier-name">F&uuml;r kleinere Teams</div>
+        <div class="pricing-tier-tagline">Wachsende Handwerksbetriebe mit B&uuml;ro und Mitarbeitern.</div>
+
+        <div class="pricing-new-price">
+          <span class="pricing-new-amount">Ab 199 &euro;</span>
+          <span class="pricing-new-period">/Monat</span>
+        </div>
+        <div class="pricing-new-yearly">bis 10 Mitarbeiter</div>
+        <div class="pricing-new-divider"></div>
+        <ul class="pricing-new-features">
+          <li><span class="check">&#10003;</span>Alles aus Starter</li>
+          <li><span class="check">&#10003;</span>Mehrere Nummern f&uuml;rs Team</li>
+          <li><span class="check">&#10003;</span>Zentrales Team-Dashboard</li>
+          <li><span class="check">&#10003;</span>Gemeinsames B&uuml;ro-Postfach</li>
+          <li><span class="check">&#10003;</span>Team-weite Suche &amp; Reports</li>
+          <li><span class="check">&#10003;</span>Pers&ouml;nlicher Onboarding-Manager</li>
+        </ul>
+        <a href="#" class="pricing-new-cta">Jetzt loslegen</a>
+        <div class="pricing-new-note">Antwort innerhalb von 24h</div>
+      </div>
+
+      <!-- Plan 3: Enterprise -->
+      <div class="pricing-new-card fade-up">
+        <div class="pricing-tier-label">Enterprise</div>
+        <div class="pricing-tier-name">F&uuml;r gr&ouml;&szlig;ere Betriebe</div>
+        <div class="pricing-tier-tagline">Mit individuellem Integrations-Projekt und Custom-Workflows.</div>
+
+        <div class="pricing-new-price">
+          <span class="pricing-new-amount">Auf Anfrage</span>
+        </div>
+        <div class="pricing-new-yearly">unbegrenzt skalierbar</div>
+        <div class="pricing-new-divider"></div>
+        <ul class="pricing-new-features">
+          <li><span class="check">&#10003;</span>Alles aus Professional</li>
+          <li><span class="check">&#10003;</span>Custom Integration in eure Systeme</li>
+          <li><span class="check">&#10003;</span>Dedicated Customer Success</li>
+          <li><span class="check">&#10003;</span>SLA &amp; Uptime-Garantie</li>
+          <li><span class="check">&#10003;</span>SSO &amp; Rollen-Management</li>
+          <li><span class="check">&#10003;</span>Vor-Ort-Workshop &amp; Schulung</li>
+        </ul>
+        <a href="#" class="pricing-new-cta outlined">Gespr&auml;ch vereinbaren</a>
+        <div class="pricing-new-note">Pers&ouml;nliche Beratung</div>
+      </div>
+    </div>
+
+    <!-- Add-on: Integration Service -->
+    <div class="pricing-addon fade-up">
+      <div class="pricing-addon-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <div class="pricing-addon-text">
+        <h4>Integrations-Service: Wir richten dein Team komplett ein</h4>
+        <p>1,5h Online-Termin mit deinem Team. Nummern einrichten, Workflows erkl&auml;ren, alle Fragen beantworten &mdash; ihr seid sofort produktiv.</p>
+      </div>
+      <div class="pricing-addon-price">500 &euro; <small>einmalig</small></div>
+      <a href="#" class="pricing-addon-cta">Termin buchen</a>
+    </div>
+  </section>
+
+  <!-- ════ FAQ NEW ════ -->
+  <section class="faq-new" id="faq">
+    <div class="faq-new-header">
+      <div class="section-eyebrow-row">
+        <span class="section-eyebrow">FAQ</span>
+        <span class="section-number">05 / 05</span>
+      </div>
+      <h2>Noch Fragen? <span class="brand-meisterfon">Meisterfon</span> hat Antworten.</h2>
+      <p>Die wichtigsten Fragen &mdash; kurz beantwortet.</p>
+    </div>
+    <div class="faq-new-list">
+      <details class="faq-new-item">
+        <summary>
+          <span class="faq-summary-eyebrow">Datenschutz</span>
+          <span class="faq-summary-title">Werden meine Gespr&auml;che aufgezeichnet?</span>
+          <span class="faq-new-icon">+</span>
+        </summary>
+        <div class="faq-new-answer">
+          <div class="faq-answer-text">Du entscheidest per Tastendruck zu Beginn jedes Gespr&auml;chs. Ohne explizite Einwilligung wird nichts aufgezeichnet &mdash; weder Audio noch Transkript. Das ist &sect;201 StGB-konform und DSGVO-sauber.</div>
+        </div>
+      </details>
+      <details class="faq-new-item">
+        <summary>
+          <span class="faq-summary-eyebrow">Setup</span>
+          <span class="faq-summary-title">Brauche ich eine App?</span>
+          <span class="faq-new-icon">+</span>
+        </summary>
+        <div class="faq-new-answer">
+          <div class="faq-answer-text">Nein. Du bekommst eine Meisterfon-Nummer, die auf dein normales Handy weitergeleitet wird. Zusammenfassungen kommen per SMS und E-Mail. Kein App-Download, keine Lernkurve.</div>
+        </div>
+      </details>
+      <details class="faq-new-item">
+        <summary>
+          <span class="faq-summary-eyebrow">Onboarding</span>
+          <span class="faq-summary-title">Ist das kompliziert einzurichten?</span>
+          <span class="faq-new-icon">+</span>
+        </summary>
+        <div class="faq-new-answer">
+          <div class="faq-answer-text">Setup in 10 Minuten: Nummer aktivieren, Weiterleitung einrichten, fertig. Wer eine Fritz!Box einrichten kann, kann Meisterfon einrichten.</div>
+        </div>
+      </details>
+      <details class="faq-new-item">
+        <summary>
+          <span class="faq-summary-eyebrow">Pricing</span>
+          <span class="faq-summary-title">Was kostet <span class="brand-meisterfon">Meisterfon</span> wirklich?</span>
+          <span class="faq-new-icon">+</span>
+        </summary>
+        <div class="faq-new-answer">
+          <div class="faq-answer-text">79 &euro;/Monat alles drin. Keine Setup-Geb&uuml;hr, keine Mindestlaufzeit, keine versteckten Kosten. Jederzeit monatlich k&uuml;ndbar. J&auml;hrlich = 2 Monate gratis.</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ════ CTA SECTION (split: text left, image right) ════ -->
+  <section class="cta-section">
+    <div class="cta-section-inner">
+      <div class="cta-section-text">
+        <span class="cta-pre-headline">Jetzt starten</span>
+        <h2>Bereit, kein Gespr&auml;ch mehr zu vergessen &mdash; ohne eine App?</h2>
+        <p class="cta-section-subtitle">Teste <span class="brand-meisterfon">Meisterfon</span> und erlebe, wie KI-gest&uuml;tzte Gesch&auml;ftstelefonie f&uuml;r Handwerker funktioniert.</p>
+        <div class="cta-buttons">
+          <a href="#" class="cta-btn-primary">Jetzt loslegen</a>
+          <a href="#" class="cta-btn-secondary">Gespr&auml;ch vereinbaren</a>
+        </div>
+        <div class="cta-trust-line">
+          <span>&#10003; DSGVO-konform</span>
+          <span>&#10003; Setup in unter 10 Minuten</span>
+          <span>&#10003; Keine Kreditkarte n&ouml;tig</span>
+        </div>
+        <div class="cta-live-card">
+          <div class="cta-live-left">
+            <div class="cta-live-badge">&#9742; LIVE TESTEN</div>
+            <div class="cta-live-number">089 4143 2183</div>
+            <p class="cta-live-text">Ruf jetzt an und erlebe selbst, wie dein Gespr&auml;ch automatisch zusammengefasst wird.</p>
+          </div>
+          <a href="tel:+498941432183" class="cta-live-btn">Jetzt anrufen &rarr;</a>
+        </div>
+      </div>
+      <div class="cta-section-image" style="position: relative;">
+        <img src="images/cta-elektriker.webp" alt="Elektriker telefoniert am Schaltkasten">
+        <div class="security-card-circle" style="left: 62%; top: 30%; transform: translate(-50%, -50%); width: 250px; height: 250px;">
+          <img src="images/circle-text.webp" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ FOOTER NEW (full-screen image bg + watermark, walter style) ════ -->
+  <footer class="footer-new">
+    <div class="footer-new-inner">
+      <!-- Top: brand + email -->
+      <div class="footer-top-row">
+        <div class="footer-brand-block">
+          <div class="footer-new-brand">
+            <img src="images/meisterfon-logo-white.svg" alt="Meisterfon" style="height: 80px; width: auto;">
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 link columns -->
+      <div class="footer-new-middle">
+        <div class="footer-new-col">
+          <h4>Produkt</h4>
+          <ul>
+            <li><a href="#funktionen">Funktionen</a></li>
+            <li><a href="#preise">Preise</a></li>
+            <li><a href="#sicherheit">Sicherheit</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-new-col">
+          <h4>L&ouml;sungen</h4>
+          <ul>
+            <li><a href="#">Anrufe entgegennehmen</a></li>
+            <li><a href="#">KI-Transkription</a></li>
+            <li><a href="#">SMS-Zusammenfassung</a></li>
+            <li><a href="#">B&uuml;ro-Sync</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-new-col">
+          <h4>Unternehmen</h4>
+          <ul>
+            <li><a href="#" onclick="openAboutModal(); return false;">&Uuml;ber uns</a></li>
+            <li><a href="#">Karriere</a></li>
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-new-col">
+          <h4>Ressourcen</h4>
+          <ul>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#">Compliance</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-new-col">
+          <h4>Rechtliches</h4>
+          <ul>
+            <li><a href="/impressum">Impressum</a></li>
+            <li><a href="/datenschutz">Datenschutz</a></li>
+            <li><a href="#">AGB</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Big watermark SVG -->
+      <div class="footer-watermark">
+        <img src="images/meisterfon-logo-footer.svg" alt="">
+      </div>
+
+      <!-- Bottom: copyright + meta -->
+      <div class="footer-new-bottom">
+        <div>&copy; 2026 Meisterfon. Alle Rechte vorbehalten.</div>
+        <div class="footer-meta">DSGVO-konform &middot; Made in Germany</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Position rotating circle on phone in background image ── */
+    (function() {
+      // Phone position in the ORIGINAL image (as fraction 0-1)
+      // These are the coordinates of the phone in the source image
+      var PHONE_X = 0.58;  // 58% from left in original image
+      var PHONE_Y = 0.30;  // 30% from top in original image
+      var IMG_NATURAL_W = 2246;  // exact natural width of hero image
+      var IMG_NATURAL_H = 1224;  // exact natural height of hero image
+
+      var circle = document.querySelector('.rotating-circle');
+      var hero = document.querySelector('.hero');
+
+      function positionCircle() {
+        if (!circle || !hero) return;
+
+        var vw = hero.offsetWidth;
+        var vh = hero.offsetHeight;
+        var imgRatio = IMG_NATURAL_W / IMG_NATURAL_H;
+        var containerRatio = vw / vh;
+
+        var renderW, renderH, offsetX, offsetY;
+
+        if (containerRatio > imgRatio) {
+          // Container is wider — image scaled by width, cropped top/bottom
+          renderW = vw;
+          renderH = vw / imgRatio;
+          offsetX = 0;
+          offsetY = 0; // background-position: center top → no top offset
+        } else {
+          // Container is taller — image scaled by height, cropped sides
+          renderH = vh;
+          renderW = vh * imgRatio;
+          offsetX = (vw - renderW) / 2; // background-position: center → centered horizontally
+          offsetY = 0; // top aligned
+        }
+
+        var phoneScreenX = offsetX + (PHONE_X * renderW);
+        var phoneScreenY = offsetY + (PHONE_Y * renderH);
+
+        circle.style.left = phoneScreenX + 'px';
+        circle.style.top = phoneScreenY + 'px';
+        circle.style.transform = 'translate(-50%, -50%)';
+      }
+
+      positionCircle();
+      window.addEventListener('resize', positionCircle);
+      // Also reposition after fonts/images load
+      window.addEventListener('load', positionCircle);
+    })();
+
+    /* ── Navbar scroll: transparent on hero + footer, scrolled in between ── */
+    window.addEventListener('scroll', function() {
+      var nav = document.querySelector('.navbar');
+      var footer = document.querySelector('.footer-new');
+      var isPastHero = window.scrollY > 80;
+      var footerInView = false;
+
+      if (footer) {
+        var rect = footer.getBoundingClientRect();
+        // Footer is "in view" once its top crosses below the navbar height (~80px)
+        footerInView = rect.top < 80;
+      }
+
+      if (isPastHero && !footerInView) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    /* ── Mobile menu ── */
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    function closeMobileMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+
+    /* ── Intersection Observer for fade-up ── */
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(function(el) {
+      observer.observe(el);
+    });
+
+    /* ── Transcript typing animation + notification stack ── */
+    (function() {
+      var body = document.getElementById('transcriptBody');
+      var cards = [
+        document.getElementById('smsCard1'),
+        document.getElementById('smsCard2'),
+        document.getElementById('emailCard')
+      ];
+      var charDelay = 35;
+
+      var messages = [
+        { sender: 'kunde', label: 'Kunde', text: 'Ja, Dienstag 9 Uhr passt mir gut.', delay: 800 },
+        { sender: 'kunde', label: 'Kunde', text: 'K\u00f6nnen Sie auch gleich die Regenrinne anschauen?', delay: 600 },
+        { sender: 'handwerker', label: 'Handwerker', text: 'Klar, mach ich.', delay: 1200 },
+        { sender: 'handwerker', label: 'Handwerker', text: 'Ich bring das Material f\u00fcr beides mit.', delay: 400 }
+      ];
+
+      function resetCards() {
+        cards.forEach(function(card) {
+          if (!card) return;
+          card.classList.remove('visible', 'stacked-1', 'stacked-2');
+        });
+      }
+
+      function showCard(index) {
+        // The new card becomes visible (front)
+        var card = cards[index];
+        if (!card) return;
+        card.classList.add('visible');
+
+        // Push older cards back in the stack
+        for (var i = index - 1; i >= 0; i--) {
+          var older = cards[i];
+          if (!older) continue;
+          var depth = index - i; // 1 = one behind, 2 = two behind
+          older.classList.remove('stacked-1', 'stacked-2');
+          if (depth === 1) older.classList.add('stacked-1');
+          if (depth >= 2) older.classList.add('stacked-2');
+        }
+      }
+
+      function runAnimation() {
+        body.innerHTML = '';
+        resetCards();
+        var msgIndex = 0;
+
+        function nextMessage() {
+          if (msgIndex >= messages.length) {
+            body.querySelectorAll('.cursor-blink').forEach(function(c) { c.remove(); });
+            // Show notifications one by one, stacking
+            setTimeout(function() {
+              showCard(0); // SMS an dich
+              setTimeout(function() {
+                showCard(1); // SMS an Frau Meier — pushes card 0 back
+                setTimeout(function() {
+                  showCard(2); // E-Mail ans Büro — pushes 0+1 back
+                  setTimeout(runAnimation, 4500);
+                }, 1200);
+              }, 1200);
+            }, 1000);
+            return;
+          }
+
+          var msg = messages[msgIndex];
+          msgIndex++;
+
+          setTimeout(function() {
+            body.querySelectorAll('.cursor-blink').forEach(function(c) { c.remove(); });
+
+            var bubble = document.createElement('div');
+            bubble.className = 'chat-bubble ' + msg.sender;
+
+            var senderEl = document.createElement('div');
+            senderEl.className = 'bubble-sender';
+            senderEl.textContent = msg.label;
+            bubble.appendChild(senderEl);
+
+            var textEl = document.createElement('span');
+            bubble.appendChild(textEl);
+
+            var cursor = document.createElement('span');
+            cursor.className = 'cursor-blink';
+            cursor.textContent = '|';
+            bubble.appendChild(cursor);
+
+            body.appendChild(bubble);
+            body.scrollTop = body.scrollHeight;
+
+            var chars = msg.text.split('');
+            var charIndex = 0;
+
+            function typeChar() {
+              if (charIndex < chars.length) {
+                textEl.textContent += chars[charIndex];
+                charIndex++;
+                body.scrollTop = body.scrollHeight;
+                setTimeout(typeChar, charDelay);
+              } else {
+                nextMessage();
+              }
+            }
+            typeChar();
+          }, msg.delay);
+        }
+
+        nextMessage();
+      }
+
+      setTimeout(runAnimation, 800);
+    })();
+
+    /* ── How it works auto-progress carousel ── */
+    (function() {
+      var features = document.querySelectorAll('.how-feature');
+      var iphones = document.querySelectorAll('.how-visual-iphone');
+      var actionCards = document.querySelectorAll('.how-action-scene');
+      if (!features.length) return;
+
+      var currentIndex = 0;
+      var intervalMs = 10000;
+      var timer = null;
+
+      function setActive(index) {
+        currentIndex = index;
+        features.forEach(function(el, i) {
+          el.classList.toggle('active', i === index);
+          if (i === index) {
+            var bar = el.querySelector('.how-feature-progress-bar');
+            if (bar) {
+              bar.style.animation = 'none';
+              void bar.offsetWidth;
+              bar.style.animation = '';
+            }
+          }
+        });
+        iphones.forEach(function(el, i) {
+          el.classList.toggle('active', i === index);
+        });
+        actionCards.forEach(function(el, i) {
+          el.classList.toggle('active', i === index);
+        });
+      }
+
+      function next() {
+        setActive((currentIndex + 1) % features.length);
+      }
+
+      function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(next, intervalMs);
+      }
+
+      // Click to jump
+      features.forEach(function(el, i) {
+        el.addEventListener('click', function() {
+          setActive(i);
+          startTimer();
+        });
+      });
+
+      // Start auto-progression when section is visible
+      var section = document.querySelector('.how-new');
+      if (section && 'IntersectionObserver' in window) {
+        var sectionObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              startTimer();
+            } else {
+              clearInterval(timer);
+            }
+          });
+        }, { threshold: 0.3 });
+        sectionObserver.observe(section);
+      } else {
+        startTimer();
+      }
+    })();
+
+    /* ── Image comparison slider (angled, clip-path synced) ── */
+    (function() {
+      var container = document.getElementById('sliderCompare');
+      if (!container) return;
+
+      var handle = document.getElementById('sliderHandle');
+      var SKEW = 10;
+      var isDragging = false;
+
+      function setPosition(pct) {
+        pct = Math.max(15, Math.min(85, pct));
+        var top = pct - SKEW;
+        var bot = pct + SKEW;
+        container.style.setProperty('--sl-top', top + '%');
+        container.style.setProperty('--sl-bot', bot + '%');
+        handle.style.left = pct + '%';
+        handle.style.top = '50%';
+
+        // Fade overlays + animate text lines
+        function updateOverlay(el, intensity) {
+          if (!el) return;
+          el.style.opacity = Math.min(1, intensity);
+          el.style.transform = 'translateY(' + (6 - Math.min(1, intensity) * 6) + 'px)';
+          el.querySelectorAll('.slider-overlay-line').forEach(function(line) {
+            var t = parseFloat(line.getAttribute('data-threshold')) || 0.5;
+            line.classList.toggle('show', intensity > t);
+          });
+        }
+        var olL = document.getElementById('sliderOL1L');
+        var olR = document.getElementById('sliderOL1R');
+        updateOverlay(olL, (pct - 45) / 25);  // starts at 45%, full at 70%
+        updateOverlay(olR, (45 - pct + 10) / 25);  // starts at 55%, full at 30%
+      }
+
+      function getPercent(e) {
+        var rect = container.getBoundingClientRect();
+        var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        return ((clientX - rect.left) / rect.width) * 100;
+      }
+
+      container.addEventListener('mousedown', function(e) { isDragging = true; setPosition(getPercent(e)); });
+      container.addEventListener('touchstart', function(e) { isDragging = true; setPosition(getPercent(e)); }, { passive: true });
+      window.addEventListener('mousemove', function(e) { if (isDragging) setPosition(getPercent(e)); });
+      window.addEventListener('touchmove', function(e) { if (isDragging) setPosition(getPercent(e)); }, { passive: true });
+      window.addEventListener('mouseup', function() { isDragging = false; });
+      window.addEventListener('touchend', function() { isDragging = false; });
+
+      setPosition(55);
+    })();
+
+    /* ── Second slider (Card 3) ── */
+    (function() {
+      var container = document.getElementById('sliderCompare2');
+      if (!container) return;
+
+      var handle = document.getElementById('sliderHandle2');
+      var SKEW = 10;
+      var isDragging = false;
+
+      function setPosition(pct) {
+        pct = Math.max(15, Math.min(85, pct));
+        var top = pct - SKEW;
+        var bot = pct + SKEW;
+        container.style.setProperty('--sl-top', top + '%');
+        container.style.setProperty('--sl-bot', bot + '%');
+        handle.style.left = pct + '%';
+        handle.style.top = '50%';
+
+        function updateOverlay2(el, intensity) {
+          if (!el) return;
+          el.style.opacity = Math.min(1, intensity);
+          el.style.transform = 'translateY(' + (6 - Math.min(1, intensity) * 6) + 'px)';
+          el.querySelectorAll('.slider-overlay-line').forEach(function(line) {
+            var t = parseFloat(line.getAttribute('data-threshold')) || 0.5;
+            line.classList.toggle('show', intensity > t);
+          });
+        }
+        var olL = document.getElementById('sliderOL2L');
+        var olR = document.getElementById('sliderOL2R');
+        updateOverlay2(olL, (pct - 45) / 25);
+        updateOverlay2(olR, (45 - pct + 10) / 25);
+      }
+
+      function getPercent(e) {
+        var rect = container.getBoundingClientRect();
+        var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        return ((clientX - rect.left) / rect.width) * 100;
+      }
+
+      container.addEventListener('mousedown', function(e) { isDragging = true; setPosition(getPercent(e)); });
+      container.addEventListener('touchstart', function(e) { isDragging = true; setPosition(getPercent(e)); }, { passive: true });
+      window.addEventListener('mousemove', function(e) { if (isDragging) setPosition(getPercent(e)); });
+      window.addEventListener('touchmove', function(e) { if (isDragging) setPosition(getPercent(e)); }, { passive: true });
+      window.addEventListener('mouseup', function() { isDragging = false; });
+      window.addEventListener('touchend', function() { isDragging = false; });
+
+      setPosition(55);
+    })();
+
+    /* ── Step 2 animated transcript ── */
+    (function() {
+      var container = document.getElementById('step2Transcript');
+      if (!container) return;
+
+      var messages = [
+        { sender: 'kunde', text: 'Hallo, hier Meier. Ich bräuchte jemanden für die Dachrinne.' },
+        { sender: 'handwerker', text: 'Frau Meier! Was genau ist das Problem?' },
+        { sender: 'kunde', text: 'Die Regenrinne an der Westseite tropft. Und die Fensterdichtung im Bad müsste auch geschaut werden.' },
+        { sender: 'handwerker', text: 'Mach ich beides. Passt Ihnen Dienstag 9 Uhr?' },
+        { sender: 'kunde', text: 'Perfekt. Brauchen Sie einen Schlüssel?' },
+        { sender: 'handwerker', text: 'Nein, ich klingle einfach. Bring das Material für beides mit.' },
+        { sender: 'kunde', text: 'Super, dann bis Dienstag!' }
+      ];
+
+      var step2Active = false;
+      var animRunning = false;
+
+      var charDelay = 30;
+
+      function runTranscriptAnim() {
+        if (animRunning) return;
+        animRunning = true;
+        container.innerHTML = '';
+
+        var msgIdx = 0;
+        function nextMessage() {
+          if (msgIdx >= messages.length || !step2Active) { animRunning = false; return; }
+          var msg = messages[msgIdx];
+          msgIdx++;
+
+          // Remove old cursor
+          var oldCursor = container.querySelector('.cursor-blink');
+          if (oldCursor) oldCursor.remove();
+
+          // Create bubble
+          var bubble = document.createElement('div');
+          bubble.className = 'chat-bubble ' + msg.sender;
+          var label = document.createElement('div');
+          label.className = 'bubble-sender';
+          label.textContent = msg.sender === 'kunde' ? 'Kunde' : 'Handwerker';
+          bubble.appendChild(label);
+
+          var textSpan = document.createElement('span');
+          bubble.appendChild(textSpan);
+
+          var cursor = document.createElement('span');
+          cursor.className = 'cursor-blink';
+          cursor.textContent = '|';
+          bubble.appendChild(cursor);
+
+          container.appendChild(bubble);
+          container.scrollTop = container.scrollHeight;
+
+          // Type character by character
+          var chars = msg.text.split('');
+          var charIdx = 0;
+          function typeChar() {
+            if (charIdx < chars.length && step2Active) {
+              textSpan.textContent += chars[charIdx];
+              charIdx++;
+              container.scrollTop = container.scrollHeight;
+              setTimeout(typeChar, charDelay);
+            } else {
+              cursor.remove();
+              setTimeout(nextMessage, 600);
+            }
+          }
+          typeChar();
+        }
+        setTimeout(nextMessage, 400);
+      }
+
+      // Watch for step 2 becoming active
+      var observer = new MutationObserver(function() {
+        var scene = document.querySelector('.how-action-scene[data-step="2"]');
+        if (scene && scene.classList.contains('active')) {
+          if (!step2Active) {
+            step2Active = true;
+            runTranscriptAnim();
+          }
+        } else {
+          step2Active = false;
+          animRunning = false;
+        }
+      });
+
+      var stage = document.querySelector('.how-action-stage');
+      if (stage) observer.observe(stage, { subtree: true, attributes: true, attributeFilter: ['class'] });
+    })();
+
+    /* ── Smooth scroll for anchor links ── */
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+  <!-- ════ CONTACT MODAL ════ -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-container">
+      <button class="modal-close" id="modalClose">&times;</button>
+
+      <!-- Left: text + trust -->
+      <div class="modal-left">
+        <span class="section-eyebrow" style="margin-bottom:20px;">Jetzt starten</span>
+        <h2 class="modal-headline">Jetzt <span class="brand-meisterfon">Meisterfon</span> kostenlos testen.</h2>
+        <p class="modal-subtitle">Starte in wenigen Minuten &mdash; kostenlos und unverbindlich. Erlebe, wie KI-gest&uuml;tzte Gesch&auml;ftstelefonie deinen Betrieb ver&auml;ndert.</p>
+
+        <div class="modal-trust-list">
+          <div class="modal-trust-item">
+            <span class="modal-trust-num">01</span>
+            <div>
+              <strong>Sofortiger Zugang</strong>
+              <span>Deine Meisterfon-Nummer ist in 10 Minuten aktiv.</span>
+            </div>
+          </div>
+          <div class="modal-trust-item">
+            <span class="modal-trust-num">02</span>
+            <div>
+              <strong>Keine Kreditkarte n&ouml;tig</strong>
+              <span>Teste alle Funktionen ohne Zahlungsdaten.</span>
+            </div>
+          </div>
+          <div class="modal-trust-item">
+            <span class="modal-trust-num">03</span>
+            <div>
+              <strong>Unverbindlich &amp; kostenlos</strong>
+              <span>Kein Verkaufsdruck &mdash; teste in deinem Tempo.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-founders">
+          <img src="images/juergen-voegele.png" alt="" class="modal-founder-avatar">
+          <div>
+            <strong>Julius Hasenzahl &amp; Paul Koch</strong>
+            <span>Co-Founder, Meisterfon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="modal-right">
+        <h3 class="modal-form-title">Kostenlosen Zugang erhalten</h3>
+        <p class="modal-form-subtitle">F&uuml;lle das Formular aus und starte sofort.</p>
+
+        <form class="modal-form" id="contactForm">
+          <div class="modal-form-row">
+            <div class="modal-form-field">
+              <label>Vorname *</label>
+              <input type="text" name="vorname" placeholder="Max" required>
+            </div>
+            <div class="modal-form-field">
+              <label>Nachname *</label>
+              <input type="text" name="nachname" placeholder="Mustermann" required>
+            </div>
+          </div>
+          <div class="modal-form-field">
+            <label>E-Mail *</label>
+            <input type="email" name="email" placeholder="max@beispiel.de" required>
+          </div>
+          <div class="modal-form-field">
+            <label>Telefon <span style="font-weight:400;color:var(--text-secondary);">(optional)</span></label>
+            <input type="tel" name="telefon" placeholder="+49 123 456789">
+          </div>
+          <button type="submit" class="modal-form-submit">Jetzt starten</button>
+          <p class="modal-form-legal">Mit dem Absenden stimmst du unserer <a href="/datenschutz">Datenschutzerkl&auml;rung</a> zu.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* ── CONTACT MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-container {
+      background: var(--white);
+      border-radius: 20px;
+      max-width: 1060px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(40,37,36,0.1);
+      border-radius: 50%;
+      background: var(--white);
+      font-size: 1.3rem;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: background 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background: rgba(40,37,36,0.05);
+    }
+
+    .modal-left {
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid rgba(40,37,36,0.08);
+    }
+
+    .modal-headline {
+      font-family: 'Archivo', sans-serif !important;
+      font-weight: 700 !important;
+      font-size: 2.4rem !important;
+      line-height: 0.95 !important;
+      letter-spacing: -0.04em !important;
+      color: var(--text) !important;
+      margin-bottom: 16px !important;
+      text-transform: none !important;
+    }
+
+    .modal-subtitle {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+
+    .modal-trust-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 32px;
+      border-top: 1px solid rgba(40,37,36,0.1);
+    }
+
+    .modal-trust-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(40,37,36,0.1);
+      align-items: flex-start;
+    }
+
+    .modal-trust-num {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.72rem;
+      color: rgba(40,37,36,0.4);
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .modal-trust-item strong {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .modal-trust-item span {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .modal-founders {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: auto;
+    }
+
+    .modal-founder-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(40,37,36,0.08);
+    }
+
+    .modal-founders strong {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--text);
+      display: block;
+    }
+
+    .modal-founders span {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .modal-right {
+      padding: 48px 40px;
+      background: rgba(40,37,36,0.02);
+    }
+
+    .modal-form-title {
+      font-family: 'Archivo', sans-serif !important;
+      font-weight: 700 !important;
+      font-size: 1.3rem !important;
+      color: var(--text) !important;
+      letter-spacing: -0.02em !important;
+      text-transform: none !important;
+      margin-bottom: 6px !important;
+    }
+
+    .modal-form-subtitle {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    .modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .modal-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .modal-form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .modal-form-field label {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--text);
+    }
+
+    .modal-form-field input {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      padding: 12px 14px;
+      border: 1px solid rgba(40,37,36,0.12);
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .modal-form-field input::placeholder {
+      color: rgba(40,37,36,0.35);
+    }
+
+    .modal-form-field input:focus {
+      border-color: var(--text);
+    }
+
+    .modal-form-submit {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 14px 24px;
+      border-radius: 9999px;
+      border: none;
+      background: var(--text);
+      color: var(--white);
+      cursor: pointer;
+      transition: background 0.2s ease;
+      margin-top: 8px;
+    }
+
+    .modal-form-submit:hover {
+      background: var(--text-deep, #0a0a0a);
+    }
+
+    .modal-form-legal {
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+
+    .modal-form-legal a {
+      color: var(--text);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .modal-container {
+        grid-template-columns: 1fr;
+      }
+      .modal-left {
+        border-right: none;
+        border-bottom: 1px solid rgba(40,37,36,0.08);
+        padding: 32px 24px;
+      }
+      .modal-right {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+
+  <script>
+    /* ── Contact Modal ── */
+    (function() {
+      var modal = document.getElementById('contactModal');
+      var closeBtn = document.getElementById('modalClose');
+      var form = document.getElementById('contactForm');
+
+      function openModal(e) {
+        if (e) e.preventDefault();
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+      });
+
+      // Wire up ALL CTA buttons to open modal
+      var ctaSelectors = [
+        '.navbar-cta',
+        '.hero-cta',
+        '.pricing-new-cta',
+        '.cta-btn-primary',
+        '.cta-btn-secondary',
+        '.pricing-addon-cta'
+      ];
+
+      ctaSelectors.forEach(function(sel) {
+        document.querySelectorAll(sel).forEach(function(btn) {
+          btn.addEventListener('click', openModal);
+        });
+      });
+
+      // Form submit → mailto
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var data = new FormData(form);
+        var subject = encodeURIComponent('Meisterfon Demo-Anfrage: ' + data.get('vorname') + ' ' + data.get('nachname'));
+        var body = encodeURIComponent(
+          'Vorname: ' + data.get('vorname') + '\n' +
+          'Nachname: ' + data.get('nachname') + '\n' +
+          'E-Mail: ' + data.get('email') + '\n' +
+          'Telefon: ' + (data.get('telefon') || '–') + '\n'
+        );
+        window.location.href = 'mailto:hallo@meisterfon.de?subject=' + subject + '&body=' + body;
+        closeModal();
+      });
+    })();
+  </script>
+
+  <!-- ── ABOUT MODAL ── -->
+  <div class="modal-overlay" id="aboutModal">
+    <div class="about-modal-container">
+      <button class="modal-close" onclick="closeAboutModal()">&times;</button>
+
+      <div class="about-modal-header">
+        <span class="section-eyebrow" style="margin-bottom:12px;">Das Team</span>
+        <h2 class="modal-headline">Die K&ouml;pfe hinter <span class="brand-meisterfon">Meisterfon</span></h2>
+      </div>
+
+      <div class="about-founders-grid">
+        <!-- Julius -->
+        <div class="about-founder-card">
+          <div class="about-avatar">
+            <span>JH</span>
+          </div>
+          <h3 class="about-founder-name">Julius Hasenzahl</h3>
+          <p class="about-founder-role">Co-Founder, Meisterfon</p>
+          <div class="about-founder-links">
+            <a href="mailto:julius@meisterfon.de" class="about-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              julius@meisterfon.de
+            </a>
+            <a href="https://linkedin.com/in/juliushasenzahl" target="_blank" rel="noopener" class="about-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- Paul -->
+        <div class="about-founder-card">
+          <div class="about-avatar">
+            <span>PK</span>
+          </div>
+          <h3 class="about-founder-name">Paul Koch</h3>
+          <p class="about-founder-role">Co-Founder, Meisterfon</p>
+          <div class="about-founder-links">
+            <a href="mailto:paul@meisterfon.de" class="about-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              paul@meisterfon.de
+            </a>
+            <a href="https://linkedin.com/in/paulfinnkoch" target="_blank" rel="noopener" class="about-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-call-block">
+        <div class="about-call-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div>
+          <p class="about-call-label">Oder ruf uns einfach mal an</p>
+          <a href="tel:+498941432183" class="about-call-number">089 4143 2183</a>
+          <p class="about-call-desc">Wir quatschen und zeigen dir live am Call wie Meisterfon funktioniert.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* ── ABOUT MODAL ── */
+    .about-modal-container {
+      background: var(--white);
+      border-radius: 20px;
+      max-width: 720px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      padding: 48px 44px;
+    }
+
+    .about-modal-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .about-founders-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .about-founder-card {
+      background: rgba(40,37,36,0.03);
+      border: 1px solid rgba(40,37,36,0.08);
+      border-radius: 16px;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .about-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(40,37,36,0.12), rgba(40,37,36,0.06));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .about-avatar span {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .about-founder-name {
+      font-family: 'Archivo', sans-serif !important;
+      font-weight: 700 !important;
+      font-size: 1.2rem !important;
+      color: var(--text) !important;
+      letter-spacing: -0.02em !important;
+      text-transform: none !important;
+      margin-bottom: 4px !important;
+    }
+
+    .about-founder-role {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+
+    .about-founder-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .about-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      color: var(--text);
+      background: var(--white);
+      border: 1px solid rgba(40,37,36,0.12);
+      border-radius: 9999px;
+      padding: 7px 14px;
+      text-decoration: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .about-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .about-call-block {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: rgba(40,37,36,0.03);
+      border: 1px solid rgba(40,37,36,0.08);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .about-call-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1px solid rgba(40,37,36,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-call-label {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .about-call-number {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .about-call-number:hover {
+      text-decoration: underline;
+    }
+
+    .about-call-desc {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 500;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px) {
+      .about-modal-container {
+        padding: 32px 20px;
+      }
+      .about-founders-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <script>
+    /* ── About Modal ── */
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeAboutModal() {
+      document.getElementById('aboutModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    (function() {
+      var modal = document.getElementById('aboutModal');
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeAboutModal();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('open')) closeAboutModal();
+      });
+    })();
+  </script>
+</body>
+</html>
